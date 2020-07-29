@@ -1,0 +1,5 @@
+<!--pages/order/order.wxml-->
+<view class="order-container">
+  <ehotel-nav>订单</ehotel-nav>
+  <text>pages/order/order.wxml</text>
+</view>

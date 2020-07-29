@@ -1,0 +1,31 @@
+<!-- index.wxml -->
+<view class="home-container">
+  <swiper
+    indicator-dots="{{true}}"
+    indicator-color="rgba(255, 255, 255, .3)"
+    indicator-active-color="#fff"
+    autoplay="{{true}}"
+    interval="{{5000}}"
+    duration="{{500}}"
+  >
+    <swiper-item wx:for="{{swiperList}}" wx:key="index">
+      <image class="swiper-image" src="{{item['imgSrc']}}" mode="scaleToFill" />
+    </swiper-item>
+  </swiper>
+  <view class="search-wrapper">
+    <view class="search-date">
+      <view class="in-date">
+        <view>入住时间</view>
+        <view>{{inTime}}</view>
+      </view>
+      <view class="sum-date">
+        共{{diffDay}}晚
+      </view>
+      <view class="out-date">
+        <view>离店时间</view>
+        <view>{{outTime}}</view>
+      </view>
+    </view>
+    <button class="search-btn" type="primary">查询</button>
+  </view>
+</view>

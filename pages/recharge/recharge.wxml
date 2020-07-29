@@ -1,0 +1,5 @@
+<!-- pages/recharge/recharge.wxml -->
+<view class="recharge-container">
+  <ehotel-nav>充值</ehotel-nav>
+  <text>pages/recharge/recharge.wxml</text>
+</view>

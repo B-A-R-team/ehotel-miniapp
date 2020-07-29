@@ -1,0 +1,5 @@
+<!-- pages/mine.wxml -->
+<view class="mine-container">
+  <ehotel-nav>我的</ehotel-nav>
+  <text>pages/mine.wxml</text>
+</view>

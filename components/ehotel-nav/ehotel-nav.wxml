@@ -1,0 +1,9 @@
+<!-- components/ehotel-nav/ehotel-nav.wxml -->
+<view class="nav-wrapper">
+  <view>
+    <button class="back-to-home" bindtap="backToHome">首页</button>
+  </view>
+  <view class="nav-title">
+    <slot>这是SLOT</slot>
+  </view>
+</view>
