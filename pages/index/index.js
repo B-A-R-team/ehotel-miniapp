@@ -8,11 +8,24 @@ Page({
     // userInfo: {},
     // hasUserInfo: false,
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    // 日历配置
+    calendarConfig: {
+      multi: true, // 是否开启多选
+      disableMode: {
+        // 禁用今天天之前的所有日期
+        type: 'before',
+      },
+    },
     swiperList: [],
     inTime: util.formatTime(new Date(), true),
     outTime: util.formatTime(new Date(), true),
     diffDay: 0,
+    openCale: false,
+    selectedDates: [],
   },
+  /**
+   * 获取轮播图数据
+   */
   getSwiperList() {
     wx.request({
       url:
@@ -26,6 +39,113 @@ Page({
         }
       },
     });
+  },
+  // 选择日期后
+  afterTapDay(e) {
+    let { selectedDates } = e.detail;
+    if (selectedDates.length <= 0) {
+      return;
+    }
+    // 开始时间
+    const start = selectedDates[0];
+    // 结束时间
+    const end = selectedDates[selectedDates.length - 1];
+
+    let toSet = this.createToSet(start, end);
+
+    if (selectedDates.length < 2) {
+      toSet = [...selectedDates];
+    }
+    console.log(toSet);
+    // 设置自动选中中间日期
+    this.calendar.setSelectedDays(toSet);
+    // 获得已选择的日期
+    const options = {
+      lunar: false, // 在配置showLunar为false, 但需返回农历信息时使用该选项
+    };
+    const selectedDay = this.calendar.getSelectedDay(options);
+
+    // 重设入住、离店时间和总共入住时间
+    const inTime = start.year + '-' + start.month + '-' + start.day;
+    const outTime = end.year + '-' + end.month + '-' + end.day;
+    this.setData({
+      selectedDates: selectedDay,
+      inTime,
+      outTime,
+      diffDay: selectedDay.length - 1,
+    });
+  },
+  // 改变日历状态
+  changeCalendarStatus() {
+    this.setData({
+      openCale: !this.data.openCale,
+    });
+  },
+  // 生成toSet - 用来范围选择日期
+  createToSet(start, end) {
+    const startYear = start.year;
+    const endYear = end.year;
+
+    const startMonth = start.month;
+    const endMonth = end.month;
+
+    const startDay = start.day;
+    const endDay = end.day;
+
+    // return 数组
+    let toSet = [];
+
+    // 如果在同年同月
+    if (startMonth === endMonth && startYear === endYear) {
+      for (let i = startDay; i <= endDay; i++) {
+        toSet.push({ year: startYear, month: startMonth, day: i });
+      }
+      return toSet;
+    }
+    // 如果在同年
+    if (startYear === endYear) {
+      for (let m = startMonth; m <= endMonth; m++) {
+        for (let d = 1; d < 32; d++) {
+          // 2月  闰年
+          if (
+            m === 2 &&
+            util.isLeapYear(startYear) &&
+            (d === 30 || d + startDay - 1 === 30)
+          ) {
+            break;
+          }
+          // 2月  平年
+          if (
+            m === 2 &&
+            !util.isLeapYear(startYear) &&
+            (d === 29 || d + startDay - 1 === 29)
+          ) {
+            break;
+          }
+          if ((d === 31 || d + startDay - 1 === 31) && !util.is31(m)) {
+            // 一个月 30 天
+            break;
+          }
+          if (m === startMonth) {
+            // 判断计算后的日期是否超过31
+            if (d + startDay - 1 >= 32) {
+              break;
+            }
+            // 和起始日期同月
+            toSet.push({ year: startYear, month: m, day: d + startDay - 1 });
+          } else if (m === endMonth && d > endDay) {
+            // 超过结束日期
+            return toSet;
+          } else {
+            toSet.push({ year: startYear, month: m, day: d });
+          }
+        }
+      }
+    }
+
+    /**
+     * @todo 不同年
+     */
   },
   onLoad: function () {
     this.getSwiperList();

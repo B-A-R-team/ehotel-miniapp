@@ -1,4 +1,15 @@
 /**index.wxss**/
+.isclose {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.isopen {
+  max-height: 300px;
+  opacity: 1;
+  transition: all 0.4s;
+}
 .home-container {
   width: 750rpx;
 }
@@ -15,13 +26,41 @@
   width: 80vw;
   /* height: 5rem; */
   background-color: #fff;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transform: translateY(-10px);
 }
 .home-container .search-wrapper .search-date {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+}
+.home-container .search-wrapper .search-date .in-date view:first-child {
+  font-size: 14px;
+  margin-bottom: 0.6rem;
+  color: #6f6f6f;
+}
+.home-container .search-wrapper .search-date .sum-date {
+  font-size: 13px;
+  line-height: 16px;
+  height: 16px;
+  color: #6f6f6f;
+  border: 1px solid #afafaf;
+  border-radius: 15px;
+  padding: 2px 5px;
+  margin-top: 0.6rem;
+}
+.home-container .search-wrapper .search-date .out-date view:first-child {
+  font-size: 14px;
+  margin-bottom: 0.6rem;
+  text-align: right;
+  color: #6f6f6f;
+}
+.home-container .search-wrapper .search-btn {
+  margin-top: 1rem;
+  background-color: #ffc000;
+  font-weight: normal;
 }

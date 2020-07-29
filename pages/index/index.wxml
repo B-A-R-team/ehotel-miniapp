@@ -18,14 +18,23 @@
         <view>入住时间</view>
         <view>{{inTime}}</view>
       </view>
-      <view class="sum-date">
-        共{{diffDay}}晚
-      </view>
+      <view class="sum-date">共{{diffDay}}晚</view>
       <view class="out-date">
         <view>离店时间</view>
         <view>{{outTime}}</view>
       </view>
     </view>
-    <button class="search-btn" type="primary">查询</button>
+    <view class="cale {{openCale ? 'isopen' : 'isclose'}}">
+      <calendar
+        calendarConfig="{{calendarConfig}}"
+        bind:onTapDay="onTapDay"
+        bind:afterTapDay="afterTapDay"
+      ></calendar>
+    </view>
+    <button
+      class="search-btn"
+      type="primary"
+      bindtap="changeCalendarStatus"
+    >{{openCale ? '确定' : '选择日期'}}</button>
   </view>
 </view>
