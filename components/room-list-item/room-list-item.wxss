@@ -1,0 +1,62 @@
+/* components/room-list-item/room-list-item.wxss */
+.item-container {
+  display: flex;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.item-container .thumb {
+  flex: 3;
+}
+
+.item-container .thumb .thumb-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+}
+
+.item-container .details {
+  flex: 7;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0.4rem 0;
+  margin-left: 1rem;
+}
+.item-container .details .remarks {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.item-container .details .price-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: center;
+}
+.item-container .details .price-wrapper .new-price {
+  color: #ffcc00;
+  line-height: 20px;
+}
+.item-container .details .price-wrapper .old-price {
+  display: table-cell;
+  font-size: 12px;
+  text-decoration: line-through;
+  margin-left: 0.2rem;
+  line-height: 20px;
+  color: #ccc;
+}
+.item-container .details .price-wrapper .last-count {
+  box-sizing: border-box;
+  margin-left: 1rem;
+  padding: 1px 0.6rem;
+  text-align: center;
+  font-size: 14px;
+  background-color: #ffcc00;
+  color: #fff;
+  border-radius: 15px;
+}
+.item-container .details .price-wrapper .last-count.disabled {
+  background-color: #ccc;
+  color: #000;
+}

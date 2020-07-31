@@ -1,0 +1,18 @@
+<!--components/room-list-item/room-list-item.wxml-->
+<view class="item-container">
+  <view class="thumb">
+    <image class="thumb-image" src="{{thumbImg}}" mode="scaleToFill" />
+  </view>
+  <view class="details">
+    <view class="title">{{title}}</view>
+    <view class="remarks">{{remarks}}</view>
+    <view class="price-wrapper">
+      <text class="new-price">￥{{newPrice}}</text>
+      <text class="old-price">{{oldPrice}}</text>
+      <text
+        class="last-count {{lastCount === 0 ? 'disabled' : ''}}"
+        bind:tap="toOrder"
+      >剩余{{lastCount}}间</text>
+    </view>
+  </view>
+</view>

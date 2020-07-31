@@ -12,6 +12,7 @@
 }
 .home-container {
   width: 750rpx;
+  padding-bottom: 50px;
 }
 .home-container swiper,
 .home-container swiper-item,
@@ -21,17 +22,40 @@
 }
 
 .home-container .search-wrapper {
-  margin: 0 10vw;
+  margin: 0 8vw;
   padding: 10px 0;
-  width: 80vw;
-  /* height: 5rem; */
+  width: 84vw;
   background-color: #fff;
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transform: translateY(-10px);
+  transform: translateY(-5px);
+}
+.home-container .search-wrapper .map {
+  box-sizing: border-box;
+  padding: 1rem 1rem;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  align-items: center;
+  padding-top: 0.4rem;
+}
+.home-container .search-wrapper .map button {
+  width: 5rem;
+  font-size: 14px;
+  padding: 1px;
+  margin: 0;
+  color: #ffcc00;
+  font-weight: normal;
+}
+.home-container .search-wrapper .map .phone-btn {
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 3rem;
+  margin-left: 1rem;
 }
 .home-container .search-wrapper .search-date {
   display: flex;
@@ -63,4 +87,12 @@
   margin-top: 1rem;
   background-color: #ffc000;
   font-weight: normal;
+}
+
+.home-container .room-wrapper {
+  margin-top: 1rem;
+}
+.home-container .room-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 0;
 }

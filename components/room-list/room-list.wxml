@@ -1,2 +1,17 @@
 <!--components/room-list/room-list.wxml-->
-<text>components/room-list/room-list.wxml</text>
+<view class="room-list-container">
+  <room-list-item
+    wx:for="{{rooms}}"
+    wx:key="roomId"
+    roomId="{{item.roomId}}"
+    thumbImg="{{item.thumbImg}}"
+    title="{{item.title}}"
+    remarks="{{item.remarks}}"
+    newPrice="{{item.newPrice}}"
+    oldPrice="{{item.oldPrice}}"
+    lastCount="{{item.lastCount}}"
+    inTime="{{inTime}}"
+    outTime="{{outTime}}"
+    diffDay="{{diffDay}}"
+  />
+</view>

@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/mine/mine",
     "pages/recharge/recharge",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/order-details/order-details"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,6 +32,17 @@
         "text": "我的"
       }
     ]
+  },
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.6",
+      "provider": "wx50b5593e81dd937a"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

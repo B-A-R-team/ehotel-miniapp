@@ -1,1 +1,15 @@
 /* components/room-list/room-list.wxss */
+.room-list-container {
+  box-sizing: border-box;
+  padding: 0 1rem;
+
+  margin: 0.5rem 8vw 50px;
+  padding: 10px 1rem;
+  width: 84vw;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

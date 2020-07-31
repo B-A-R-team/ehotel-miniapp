@@ -1,0 +1,70 @@
+<!--pages/order-details/order-details.wxml-->
+<view class="details-container">
+  <!-- 房间信息 -->
+  <view class="room-desc">
+    <view class="title">
+      <text>{{room.title}}</text>
+      <navigator>房间详情 ＞</navigator>
+    </view>
+    <view class="date">{{inTime}}/{{outTime}} 共{{diffDay}}晚</view>
+    <view class="remarks">{{room.remarks}}</view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="create-order">
+    <view class="tips">房间仅剩{{room.empty_count}}，请尽快预定以免被人抢订</view>
+    <view class="room-count-wrapper">
+      <view>房间数</view>
+      <view>
+        <button bindtap="decreaseRoomCount">-</button>
+        <text>{{room_count}}</text>
+        <button bindtap="increaseRoomCount">+</button>
+      </view>
+    </view>
+    <view class="member">
+      <view>入住人</view>
+      <input placeholder="每间填一位入住人的姓名" />
+    </view>
+    <view class="phone">
+      <view>联系手机</view>
+      <input placeholder="填写入住人的手机号" />
+    </view>
+    <view class="date">
+      <view>预计到店</view>
+      <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+        <view class="picker">{{time}}</view>
+      </picker>
+    </view>
+  </view>
+  <!-- 价格确定 -->
+  <view class="price-wrapper">
+    <view class="price">
+      <view>房费</view>
+      <view>{{diffDay}}晚{{room_count}}间 总共￥{{total_price}}</view>
+    </view>
+    <view class="coupon">
+      <view>优惠券</view>
+      <view>
+        <picker bindchange="bindCouponChange" value="{{couponIdx}}" range="{{coupons}}">
+          <view class="picker" wx:if="{{couponIdx !== -1}}">-￥{{coupons[couponIdx]}}</view>
+          <view class="picker" wx:else>未选择 ＞</view>
+        </picker>
+      </view>
+    </view>
+    <view class="useVip">
+      <view>使用会员余额支付</view>
+      <view class="intergal">（剩余￥{{intergal}}）</view>
+      <switch bindchange="useVipChange" color="#ffcc00" checked="{{useIntergal}}" />
+    </view>
+  </view>
+  <view class="explain">
+    <rich-text nodes="{{explain_html}}"></rich-text>
+  </view>
+  <view class="bottom-button">
+    <view>￥{{total_price}}</view>
+    <view
+      class="{{useIntergal?'sell-btn':''}}"
+      hover-class="sell-btn-hover"
+      bindtap="doSell"
+    >{{useIntergal?'积分':''}}支付</view>
+  </view>
+</view>

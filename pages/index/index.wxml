@@ -1,5 +1,6 @@
 <!-- index.wxml -->
 <view class="home-container">
+  <!-- 轮播图 -->
   <swiper
     indicator-dots="{{true}}"
     indicator-color="rgba(255, 255, 255, .3)"
@@ -12,7 +13,15 @@
       <image class="swiper-image" src="{{item['imgSrc']}}" mode="scaleToFill" />
     </swiper-item>
   </swiper>
+  <!-- 选择日期栏 -->
   <view class="search-wrapper">
+    <!-- 地图 -->
+    <view class="map">
+      <text>{{hotel_location_info.name}}</text>
+      <button bindtap="goHotel">查看路线</button>
+      <button class="phone-btn" bindtap="callPhone">呼叫</button>
+    </view>
+    <!-- 日期 -->
     <view class="search-date">
       <view class="in-date">
         <view>入住时间</view>
@@ -37,4 +46,6 @@
       bindtap="changeCalendarStatus"
     >{{openCale ? '确定' : '选择日期'}}</button>
   </view>
+  <!-- 房间列表 -->
+  <room-list class="room-wrapper" inTime="{{inTime}}" outTime="{{outTime}}" diffDay="{{diffDay}}" />
 </view>

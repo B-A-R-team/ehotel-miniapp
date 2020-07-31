@@ -22,6 +22,13 @@ Page({
     diffDay: 0,
     openCale: false,
     selectedDates: [],
+    hotel_location_info: {
+      name: '棕榈树酒店',
+      // 113.610225,34.738107
+      latitude: 34.738107,
+      longitude: 113.610225,
+    },
+    phone: '123456',
   },
   /**
    * 获取轮播图数据
@@ -146,6 +153,29 @@ Page({
     /**
      * @todo 不同年
      */
+  },
+  goHotel() {
+    let plugin = requirePlugin('routePlan');
+    let key = 'VGDBZ-M7Z35-D2TIR-QPCW4-MVOMH-FDBTA'; //使用在腾讯位置服务申请的key
+    let referer = 'BAR电竞酒店平台'; //调用插件的app的名称
+    const { name, latitude, longitude } = this.data.hotel_location_info;
+    // 终点
+    let endPoint = JSON.stringify({ name, latitude, longitude });
+    wx.navigateTo({
+      url:
+        'plugin://routePlan/index?key=' +
+        key +
+        '&referer=' +
+        referer +
+        '&endPoint=' +
+        endPoint,
+    });
+  },
+  // 打电话
+  callPhone() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
+    });
   },
   onLoad: function () {
     this.getSwiperList();

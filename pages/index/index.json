@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "calendar": "/components/calendar/index"
+    "calendar": "/components/calendar/index",
+    "room-list": "/components/room-list/room-list"
   }
 }

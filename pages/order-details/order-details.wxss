@@ -1,0 +1,181 @@
+/* pages/order-details/order-details.wxss */
+.details-container {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  background-color: #faf9f9;
+  height: 100vh;
+}
+.details-container > view:nth-child(-n + 3) {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 1.5rem;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
+  border-radius: 5px;
+  transform: translateY(-5px);
+  margin-top: 1rem;
+}
+.details-container .room-desc {
+  margin-top: 0 !important;
+  height: 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.details-container .room-desc .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.details-container .room-desc .title navigator {
+  font-size: 14px;
+  color: #ffcc00;
+}
+.details-container .room-desc .date {
+  font-size: 13px;
+}
+.details-container .room-desc .remarks {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.details-container .create-order {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 220px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.details-container .create-order > view {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.details-container .create-order > view > view,
+.details-container .create-order > view > input,
+.details-container .create-order > view > picker {
+  height: 24px;
+  line-height: 24px;
+}
+.details-container .create-order > view > view:first-child {
+  flex: 1;
+}
+.details-container .create-order > view > input,
+.details-container .create-order > view > picker {
+  flex: 3;
+  font-size: 16px;
+}
+.details-container .create-order > view > picker {
+  color: #aaa;
+}
+.details-container .create-order .tips {
+  color: rgb(240, 137, 135);
+  font-size: 14px;
+}
+.details-container .create-order .room-count-wrapper {
+  justify-content: space-between;
+}
+.details-container .create-order .room-count-wrapper > view:last-child {
+  display: flex;
+  align-items: center;
+}
+.details-container .create-order .room-count-wrapper button {
+  background: none;
+  padding: 0;
+  display: inline-block;
+  width: 32px;
+  font-weight: normal;
+  line-height: 24px;
+  font-size: 22px;
+  color: #aaa;
+}
+.details-container .create-order .room-count-wrapper text {
+  display: inline-block;
+  text-align: center;
+  color: #ffcc00;
+  height: 24px;
+  width: 28px;
+  line-height: 24px;
+  font-size: 20px;
+}
+
+.details-container .price-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.details-container .price-wrapper > view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 24px;
+  height: 24px;
+}
+.details-container .price-wrapper .coupon {
+  font-size: 14px;
+}
+.details-container .price-wrapper .coupon picker {
+  width: 16rem;
+  text-align: right;
+}
+.details-container .price-wrapper .coupon .picker {
+  color: #ffcc00;
+}
+.details-container .price-wrapper .useVip {
+  justify-content: start;
+  position: relative;
+}
+.details-container .price-wrapper .useVip .intergal {
+  font-size: 12px;
+  color: #aaa;
+}
+.details-container .price-wrapper .useVip switch {
+  position: absolute;
+  right: 0;
+}
+.details-container .explain {
+  box-sizing: border-box;
+  padding: 10px 1.5rem 56px;
+  color: #3b393a;
+}
+.details-container .white {
+  padding: 10px 0;
+}
+
+.details-container .bottom-button {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 46px;
+}
+.details-container .bottom-button > view {
+  flex: 1;
+  text-align: center;
+  height: 100%;
+  line-height: 46px;
+}
+.details-container .bottom-button > view:first-child {
+  color: #ffcc00;
+  background-color: #fff;
+}
+.details-container .bottom-button > view:last-child {
+  background-color: #ffcc00;
+  transition: background-color 0.4s;
+}
+.details-container .bottom-button > .sell-btn:last-child {
+  background-color: #00b26a;
+  color: #fff;
+  transition: background-color 0.4s;
+}
+.details-container .bottom-button > view:last-child.sell-btn-hover {
+  background-color: #d8ad00;
+}

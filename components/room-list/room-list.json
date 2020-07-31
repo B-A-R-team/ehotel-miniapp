@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "room-list-item":"/components/room-list-item/room-list-item"
+  }
 }
