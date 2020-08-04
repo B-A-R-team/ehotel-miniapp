@@ -57,6 +57,6 @@
   border-radius: 15px;
 }
 .item-container .details .price-wrapper .last-count.disabled {
-  background-color: #ccc;
+  background-color: #dddddd;
   color: #000;
 }

@@ -1,5 +1,64 @@
 <!-- pages/mine.wxml -->
 <view class="mine-container">
-  <ehotel-nav>我的</ehotel-nav>
-  <text>pages/mine.wxml</text>
+  <view class="mine-header">
+    <view class="mine-avatar">
+      <image
+        class="avatar"
+        src="https://i2.hdslb.com/bfs/face/fe80011baeb9a12706426bdbf39abd9b4b95518d.jpg_64x64.jpg"
+      />
+      <text>太平洋上的鳕鱼堡</text>
+    </view>
+    <view class="mine-desc">
+      <navigator class="to-mine-detail">个人信息 ＞</navigator>
+    </view>
+  </view>
+  <view class="services">
+    <view>常用服务</view>
+    <view class="service-content">
+      <navigator class="active-page service-item">
+        <image class="service-icon" src="/assets/active64.png" style="margin-bottom: 5px;" />
+        <text>活动中心</text>
+      </navigator>
+      <navigator class="coupon-page service-item">
+        <image class="service-icon" src="/assets/coupon64.png" />
+        <text>优惠券</text>
+      </navigator>
+      <navigator class="vip-page service-item">
+        <image class="service-icon" src="/assets/vip64.png" />
+        <text>会员中心</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="balance">
+    <view class="money">
+      <image class="money-icon" src="/assets/money.png" />
+      <text>我的余额</text>
+    </view>
+    <view class="money-wrapper">
+      <view class="money-val">
+        0.00
+        <text class="company">元</text>
+      </view>
+      <button class="money-btn" hover-class="btn-hover" plain="{{true}}" bindtap="toRecharge">立即充值</button>
+    </view>
+  </view>
+  <view class="intergal">
+    <view class="money">
+      <image class="money-icon" src="/assets/intergal.png" />
+      <text>我的积分</text>
+    </view>
+    <view class="money-wrapper">
+      <view class="money-val">
+        0
+        <text class="company">分</text>
+      </view>
+      <button class="money-btn" hover-class="btn-hover" plain="{{true}}" bindtap="toIntergal">积分兑换</button>
+    </view>
+  </view>
+  <view class="bottom-tips">
+    <view class="email">
+      <text>意见反馈邮箱：</text>
+      <text>abc@gmail.com</text>
+    </view>
+  </view>
 </view>

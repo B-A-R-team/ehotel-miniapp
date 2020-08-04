@@ -143,6 +143,7 @@
   box-sizing: border-box;
   padding: 10px 1.5rem 56px;
   color: #3b393a;
+  font-size: 14px;
 }
 .details-container .white {
   padding: 10px 0;

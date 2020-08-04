@@ -1,0 +1,5 @@
+<!--components/sub-order/sub-order.wxml-->
+<view class="subOrder-container">
+  <view wx:if="{{orderList.length === 0}}" class="no-data">暂无消费记录{{activeItem}}</view>
+  <order-list wx:else orderList="{{orderList}}"></order-list>
+</view>

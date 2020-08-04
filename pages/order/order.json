@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "ehotel-nav": "../../components/ehotel-nav/ehotel-nav"
-  },
-  "navigationBarBackgroundColor": "#FFC000"
+    "sub-order": "/components/sub-order/sub-order"
+  }
 }

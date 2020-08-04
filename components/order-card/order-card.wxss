@@ -1,0 +1,58 @@
+/* components/order-card/order-card.wxss */
+.ordercard-container {
+  display: flex;
+  height: 12rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 1rem;
+  margin: 1rem 6vw 0;
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
+  border-radius: 5px;
+}
+
+.ordercard-container .remarks,
+.ordercard-container .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ordercard-container .title > view:first-child {
+  font-weight: bold;
+}
+.ordercard-container .title > view:last-child {
+  color: #8f8f8f;
+}
+.ordercard-container .remarks {
+  justify-content: flex-start;
+}
+.ordercard-container .remarks image {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+}
+.ordercard-container .remarks > view {
+  margin-left: 1rem;
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ordercard-container .remarks > view .discount {
+  color: #ffcc00;
+  font-size: 14px;
+}
+.ordercard-container .btns {
+  display: flex;
+  justify-content: flex-end;
+}
+.ordercard-container .btns .more {
+  margin: 0;
+  padding: 0;
+  width: 5rem;
+  font-size: 16px;
+  font-weight: normal;
+  color: #ffcc00;
+}

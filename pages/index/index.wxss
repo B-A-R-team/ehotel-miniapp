@@ -22,9 +22,9 @@
 }
 
 .home-container .search-wrapper {
-  margin: 0 8vw;
+  margin: 0 5vw;
   padding: 10px 0;
-  width: 84vw;
+  width: 90vw;
   background-color: #fff;
   box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
   border-radius: 5px;

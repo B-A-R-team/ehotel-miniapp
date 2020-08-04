@@ -1,5 +1,13 @@
 <!--pages/order/order.wxml-->
 <view class="order-container">
-  <ehotel-nav>订单</ehotel-nav>
-  <text>pages/order/order.wxml</text>
+  <view class="nav-bar">
+    <view
+      class="nav-item {{activeItem === index ? 'active': ''}}"
+      wx:for="{{navItems}}"
+      wx:key="index"
+      bind:tap="changeActive"
+      data-index="{{index}}"
+    >{{item}}</view>
+  </view>
+  <sub-order class="sub-order" id="sub" />
 </view>

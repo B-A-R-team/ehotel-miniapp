@@ -5,8 +5,8 @@ Component({
     selectedColor: '#FFC000',
     list: [
       {
-        pagePath: '/pages/recharge/recharge',
-        text: '充值',
+        pagePath: '/pages/index/index',
+        text: '首页',
       },
       {
         pagePath: '/pages/order/order',

@@ -1,1 +1,145 @@
 /* pages/mine.wxss */
+.mine-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #faf9f9;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.mine-container .btn-hover {
+  background-color: #ffcc00;
+  color: #fff !important;
+  transition: all 0.2s;
+}
+
+.mine-container .mine-header,
+.mine-container .balance,
+.mine-container .intergal,
+.mine-container .services {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px 1rem;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
+}
+
+.mine-container .mine-header .avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 1rem;
+  border-radius: 50%;
+}
+
+.mine-container .mine-header .mine-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.mine-container .mine-header .mine-desc .to-mine-detail {
+  color: #ffcc00;
+}
+
+.mine-container .balance,
+.mine-container .intergal,
+.mine-container .services {
+  height: 200rpx;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 1rem;
+  margin: 1rem;
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+.mine-container .balance .money,
+.mine-container .intergal .money {
+  display: flex;
+  align-items: center;
+}
+.mine-container .balance .money-icon,
+.mine-container .intergal .money-icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 0.5rem;
+}
+.mine-container .balance .money-wrapper,
+.mine-container .intergal .money-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mine-container .balance .money-wrapper .money-val,
+.mine-container .intergal .money-wrapper .money-val {
+  font-size: 30px;
+}
+
+.mine-container .balance .money-wrapper .money-val .company,
+.mine-container .intergal .money-wrapper .money-val .company {
+  font-size: 14px;
+}
+
+.mine-container .balance .money-wrapper .money-btn,
+.mine-container .intergal .money-wrapper .money-btn {
+  width: 6rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-weight: normal;
+  border-radius: 1rem;
+  padding: 0 0.5rem;
+  color: #ffcc00;
+  border-color: #ffcc00;
+  margin: auto 0;
+  transition: all 0.2s;
+}
+.mine-container .services {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 200rpx;
+  padding: 20rpx;
+  padding-top: 10rpx;
+}
+.mine-container .services > view:first-child {
+  font-size: 14px;
+}
+.mine-container .service-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding-top: 0.3rem;
+}
+.mine-container .services .service-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+.mine-container .services .service-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.mine-container .services .service-item text {
+  font-size: 14px;
+  color: #515151;
+}
+.mine-container .bottom-tips {
+  width: 100%;
+  color: #9e9e9e;
+  font-size: 16px;
+  position: absolute;
+  bottom: 180rpx;
+}
+
+.mine-container .bottom-tips .email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

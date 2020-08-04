@@ -1,0 +1,5 @@
+/* components/order-list/order-list.wxss */
+.orderlist-container {
+  width: 100vw;
+  padding-bottom: 6rem;
+}

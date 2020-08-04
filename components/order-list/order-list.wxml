@@ -1,0 +1,12 @@
+<!--components/order-list/order-list.wxml-->
+<view class="orderlist-container">
+  <order-card
+    wx:for="{{orderList}}"
+    wx:key="index"
+    title="{{item.title}}"
+    status="{{item.status}}"
+    time="{{item.time}}"
+    member_num="{{item.member_num}}"
+    discount="{{item.discount}}"
+  ></order-card>
+</view>
