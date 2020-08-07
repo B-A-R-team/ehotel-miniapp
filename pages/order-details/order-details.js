@@ -9,6 +9,7 @@ Page({
     outTime: '',
     diffDay: 0,
     room: {
+      id: '123',
       title: '测试房间',
       remarks: '1234',
       empty_count: 2,

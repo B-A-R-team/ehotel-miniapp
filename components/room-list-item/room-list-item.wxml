@@ -1,5 +1,5 @@
 <!--components/room-list-item/room-list-item.wxml-->
-<view class="item-container">
+<view class="item-container" bind:tap="toDetail">
   <view class="thumb">
     <image class="thumb-image" src="{{thumbImg}}" mode="scaleToFill" />
   </view>

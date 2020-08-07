@@ -4,7 +4,8 @@
     "pages/mine/mine",
     "pages/recharge/recharge",
     "pages/order/order",
-    "pages/order-details/order-details"
+    "pages/order-details/order-details",
+    "pages/room-detail/room-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

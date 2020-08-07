@@ -28,20 +28,34 @@
   box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
 }
 
+.mine-container .mine-header {
+  padding: 20rpx 1rem;
+}
+
 .mine-container .mine-header .avatar {
   width: 120rpx;
   height: 120rpx;
-  margin-right: 1rem;
+  margin-bottom: 0.5rem;
   border-radius: 50%;
 }
 
 .mine-container .mine-header .mine-avatar {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
 .mine-container .mine-header .mine-desc .to-mine-detail {
   color: #ffcc00;
+}
+.mine-container .mine-header .mine-desc.login {
+  width: 100%;
+  justify-content: center;
+}
+.mine-container .mine-header .mine-desc.login .to-mine-detail {
+  color: #515151;
 }
 
 .mine-container .balance,

@@ -63,5 +63,11 @@ Component({
         url: `/pages/order-details/order-details?roomId=${roomId}&inTime=${inTime}&outTime=${outTime}&diffDay=${diffDay}`,
       });
     },
+    toDetail() {
+      const { roomId } = this.properties;
+      wx.navigateTo({
+        url: `/pages/room-detail/room-detail?roomid=${roomId}`,
+      });
+    },
   },
 });

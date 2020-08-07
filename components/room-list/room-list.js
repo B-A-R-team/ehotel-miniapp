@@ -1,4 +1,6 @@
 // components/room-list/room-list.js
+const app = getApp();
+
 Component({
   /**
    * 组件的属性列表
@@ -19,57 +21,41 @@ Component({
    * 组件的初始数据
    */
   data: {
-    rooms: [
-      {
-        roomId: 'asd123',
-        thumbImg: '/assets/default_room.jpg',
-        title: '水床',
-        remarks: '1223',
-        newPrice: 100,
-        oldPrice: 200,
-        lastCount: 2,
-      },
-      {
-        roomId: 'asd127',
-        thumbImg: '/assets/default_room.jpg',
-        title: '大床房',
-        remarks: '1223',
-        newPrice: 100,
-        oldPrice: 200,
-        lastCount: 2,
-      },
-      {
-        roomId: 'asd126',
-        thumbImg: '/assets/default_room.jpg',
-        title: '双人床',
-        remarks: '1223',
-        newPrice: 100,
-        oldPrice: 200,
-        lastCount: 0,
-      },
-      {
-        roomId: 'asd125',
-        thumbImg: '/assets/default_room.jpg',
-        title: '三人房',
-        remarks: '1223',
-        newPrice: 100,
-        oldPrice: 200,
-        lastCount: 2,
-      },
-      {
-        roomId: 'asd124',
-        thumbImg: '/assets/default_room.jpg',
-        title: '商务标间',
-        remarks: '1223',
-        newPrice: 100,
-        oldPrice: 200,
-        lastCount: 2,
-      },
-    ],
+    rooms: [],
   },
 
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    getRooms: function () {
+      const { hotel_id } = app.globalData;
+      wx.request({
+        url: `${app.globalData.root_url}hotels/getrooms`,
+        data: { id: hotel_id },
+        success: (res) => {
+          const { code, data } = res.data;
+          data.forEach((item) => {
+            item['img_url'] = app.globalData['root_url'] + item['img_url'][0];
+          });
+          if (code === 0) {
+            this.setData({
+              rooms: data,
+            });
+          }
+          console.log(data);
+        },
+      });
+    },
+  },
+
+  lifetimes: {
+    attached: function () {
+      // 在组件实例进入页面节点树时执行
+      this.getRooms();
+    },
+    detached: () => {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  },
 });

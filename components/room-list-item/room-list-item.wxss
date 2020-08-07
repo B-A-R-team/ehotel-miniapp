@@ -48,8 +48,8 @@
 }
 .item-container .details .price-wrapper .last-count {
   box-sizing: border-box;
-  margin-left: 1rem;
-  padding: 1px 0.6rem;
+  margin-left: 1.3rem;
+  padding: 5rpx 0.4rem;
   text-align: center;
   font-size: 14px;
   background-color: #ffcc00;

@@ -4,7 +4,7 @@
   <view class="room-desc">
     <view class="title">
       <text>{{room.title}}</text>
-      <navigator>房间详情 ＞</navigator>
+      <navigator url="/pages/room-detail/room-detail?roomid={{room['id']}}">房间详情 ＞</navigator>
     </view>
     <view class="date">{{inTime}}/{{outTime}} 共{{diffDay}}晚</view>
     <view class="remarks">{{room.remarks}}</view>
@@ -51,7 +51,7 @@
       </view>
     </view>
     <view class="useVip">
-      <view>使用会员余额支付</view>
+      <view>使用余额支付</view>
       <view class="intergal">（剩余￥{{intergal}}）</view>
       <switch bindchange="useVipChange" color="#ffcc00" checked="{{useIntergal}}" />
     </view>
@@ -65,6 +65,6 @@
       class="{{useIntergal?'sell-btn':''}}"
       hover-class="sell-btn-hover"
       bindtap="doSell"
-    >{{useIntergal?'积分':''}}支付</view>
+    >{{useIntergal?'余额':''}}支付</view>
   </view>
 </view>

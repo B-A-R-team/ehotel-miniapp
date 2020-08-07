@@ -5,9 +5,9 @@ const app = getApp();
 
 Page({
   data: {
-    // userInfo: {},
-    // hasUserInfo: false,
-    // canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // 日历配置
     calendarConfig: {
       multi: true, // 是否开启多选
@@ -28,8 +28,37 @@ Page({
       latitude: 34.738107,
       longitude: 113.610225,
     },
-    phone: '123456',
+    phone: '001',
   },
+
+  getHotelInfo() {
+    const { hotel_id } = app.globalData;
+    console.log(hotel_id);
+    wx.request({
+      url: `${app.globalData.root_url}hotels/clientget`,
+      data: {
+        id: hotel_id,
+      },
+      success: (res) => {
+        const { code, data } = res.data;
+        const localtion = {
+          name: data.address + data.title,
+          latitude: data.latitude,
+          longitude: data.longitude,
+        };
+        if (code === 0) {
+          console.log(data);
+          this.setData({
+            inTime: data.open_time,
+            outTime: data.end_time,
+            phone: data.phone,
+            hotel_location_info: localtion,
+          });
+        }
+      },
+    });
+  },
+
   /**
    * 获取轮播图数据
    */
@@ -178,44 +207,43 @@ Page({
     });
   },
   onLoad: function () {
+    this.getHotelInfo();
+
+    if (app.globalData.userInfo) {
+      console.log('app.globalData.userInfo');
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true,
+      });
+    } else if (this.data.canIUse) {
+      console.log('this.data.canIUse');
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = (res) => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true,
+        });
+      };
+    } else {
+      console.log('else');
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: (res) => {
+          app.globalData.userInfo = res.userInfo;
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true,
+          });
+        },
+      });
+    }
+
     this.getSwiperList();
     const time = util.formatTime(new Date(), true);
     this.setData({ time });
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true,
-    //   });
-    // } else if (this.data.canIUse) {
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = (res) => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true,
-    //     });
-    //   };
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: (res) => {
-    //       app.globalData.userInfo = res.userInfo;
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true,
-    //       });
-    //     },
-    //   });
-    // }
   },
-  getUserInfo: function (e) {
-    console.log(e);
-    app.globalData.userInfo = e.detail.userInfo;
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-    });
-  },
+
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({

@@ -47,5 +47,11 @@
     >{{openCale ? '确定' : '选择日期'}}</button>
   </view>
   <!-- 房间列表 -->
-  <room-list class="room-wrapper" inTime="{{inTime}}" outTime="{{outTime}}" diffDay="{{diffDay}}" />
+  <room-list
+    class="room-wrapper"
+    inTime="{{inTime}}"
+    outTime="{{outTime}}"
+    diffDay="{{diffDay}}"
+    hotelId="{{hotelId}}"
+  />
 </view>

@@ -17,6 +17,7 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
@@ -28,7 +29,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
-	"appid": "wx7e2c5517341a4316",
+	"appid": "wx29813b3365938a41",
 	"projectname": "ehotelminiapp",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -61,9 +62,17 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "mine 开发",
+					"id": 0,
+					"name": "pages/mine/mine",
 					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/order",
+					"pathName": "pages/order/order",
+					"query": "",
 					"scene": null
 				}
 			]

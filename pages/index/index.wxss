@@ -13,6 +13,7 @@
 .home-container {
   width: 750rpx;
   padding-bottom: 50px;
+  background-color: #faf9f9;
 }
 .home-container swiper,
 .home-container swiper-item,
