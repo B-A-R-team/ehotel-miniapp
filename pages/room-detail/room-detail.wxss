@@ -1,1 +1,51 @@
 /* pages/room-detail/room-detail.wxss */
+.room-detail-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.room-detail-container .swiper {
+  width: 100%;
+  height: 400rpx;
+}
+.room-detail-container .swiper-image {
+  width: 100%;
+  height: 100%;
+}
+.room-detail-container .info-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.room-detail-container .computer-info {
+  padding-top: 0;
+}
+.room-detail-container .info-list .label {
+  font-size: 40rpx;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.room-detail-container .info-list .infos > view {
+  display: flex;
+  line-height: 60rpx;
+  margin-bottom: 0.5rem;
+}
+.room-detail-container .info-list .infos text {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 65vw;
+}
+.room-detail-container .info-list .infos .info-label {
+  line-height: 60rpx;
+  height: 60rpx;
+  text-align: justify;
+  text-align-last: justify;
+  width: 4rem;
+  margin-right: 1rem;
+  color: #515151;
+}

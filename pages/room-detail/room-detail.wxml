@@ -1,2 +1,84 @@
 <!--pages/room-detail/room-detail.wxml-->
-<text>pages/room-detail/room-detail.wxml</text>
+<view class="room-detail-container">
+  <swiper
+    class="swiper"
+    indicator-dots="{{true}}"
+    autoplay="{{true}}"
+    interval="{{5000}}"
+    duration="{{500}}"
+  >
+    <block wx:for="{{room['img_url']}}">
+      <swiper-item>
+        <image class="swiper-image" src="{{item}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 房间详情 -->
+  <view class="room-info info-list">
+    <view class="label">房间详情</view>
+    <view class="infos">
+      <view>
+        <text class="info-label">房间面积</text>
+        <text>{{room['room_info']['area']}}</text>
+      </view>
+      <view>
+        <text class="info-label">入住人数</text>
+        <text>{{room['room_info']['people_count']}}</text>
+      </view>
+      <view>
+        <text class="info-label">床位</text>
+        <text>{{room['room_info']['bed_count']}}</text>
+      </view>
+      <view>
+        <text class="info-label">浴室配置</text>
+        <text>{{room['room_info']['bathroom']}}</text>
+      </view>
+      <view>
+        <text class="info-label">电脑数量</text>
+        <text>{{room['room_info']['computer_count']}}</text>
+      </view>
+      <view>
+        <text class="info-label">房间楼层</text>
+        <text>{{room['room_info']['floor']}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 电脑配置 -->
+  <view class="computer-info info-list">
+    <view class="label">电脑配置</view>
+    <view class="infos">
+      <view>
+        <text class="info-label">C P U</text>
+        <text>{{room['computer_info']['cpu']}}</text>
+      </view>
+      <view>
+        <text class="info-label">显卡</text>
+        <text>{{room['computer_info']['gpu']}}</text>
+      </view>
+      <view>
+        <text class="info-label">显示器</text>
+        <text>{{room['computer_info']['device']}}</text>
+      </view>
+      <view>
+        <text class="info-label">主板</text>
+        <text>{{room['computer_info']['mainboard']}}</text>
+      </view>
+      <view>
+        <text class="info-label">内存</text>
+        <text>{{room['computer_info']['memory']}}</text>
+      </view>
+      <view>
+        <text class="info-label">键盘</text>
+        <text>{{room['computer_info']['keyboard']}}</text>
+      </view>
+      <view>
+        <text class="info-label">鼠标</text>
+        <text>{{room['computer_info']['mouse']}}</text>
+      </view>
+      <view>
+        <text class="info-label">耳机</text>
+        <text>{{room['computer_info']['earphone']}}</text>
+      </view>
+    </view>
+  </view>
+</view>
