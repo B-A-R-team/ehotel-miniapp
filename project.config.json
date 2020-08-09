@@ -24,7 +24,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -69,9 +69,16 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/order/order",
-					"pathName": "pages/order/order",
+					"id": 1,
+					"name": "pages/active/active",
+					"pathName": "pages/active/active",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/vipcenter/vipcenter",
+					"pathName": "pages/vipcenter/vipcenter",
 					"query": "",
 					"scene": null
 				}

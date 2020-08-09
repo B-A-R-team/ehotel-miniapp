@@ -9,9 +9,7 @@ Page({
     outTime: '',
     diffDay: 0,
     room: {
-      id: '123',
       title: '测试房间',
-      remarks: '1234',
       empty_count: 2,
       price: 100,
     },
@@ -104,12 +102,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { roomId, inTime, outTime, diffDay } = options;
+    const {
+      roomId,
+      inTime,
+      outTime,
+      diffDay,
+      title,
+      price,
+      empty_count,
+    } = options;
+
+    const room = {
+      title,
+      price,
+      empty_count,
+    };
+
     this.setData({
       roomId,
       inTime,
       outTime,
       diffDay: parseInt(diffDay),
+      room,
     });
     this.getTotlePrice();
   },

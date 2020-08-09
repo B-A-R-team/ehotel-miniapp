@@ -7,7 +7,7 @@
     interval="{{5000}}"
     duration="{{500}}"
   >
-    <block wx:for="{{room['img_url']}}">
+    <block wx:for="{{room['img_url']}}" wx:key="index">
       <swiper-item>
         <image class="swiper-image" src="{{item}}" />
       </swiper-item>

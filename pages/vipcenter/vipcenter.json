@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "会员中心",
+  "usingComponents": {
+    "vip-card": "/components/vip-card/vip-card"
+  }
+}

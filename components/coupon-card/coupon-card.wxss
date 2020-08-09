@@ -1,0 +1,125 @@
+/* components/coupon-card/coupon-card.wxss */
+.coupon-card-container {
+  display: flex;
+  box-sizing: border-box;
+  height: 220rpx;
+}
+.coupon-card-container .coupon-left {
+  flex: 7;
+  background-color: #fff;
+  border-radius: 18rpx 0 0 18rpx;
+  position: relative;
+
+  border-right: 2rpx dashed transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+    repeating-linear-gradient(
+      -135deg,
+      #f5f5f5 0,
+      #f5f5f5 0.5rem,
+      #ffcc00 0,
+      #ffcc00 0.75rem
+    );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 60rpx;
+}
+.coupon-card-container .coupon-left > view:first-child {
+  margin-bottom: 40rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.coupon-card-container .coupon-left > view:last-child {
+  font-size: 28rpx;
+  color: #909399;
+}
+.coupon-card-container .coupon-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2rpx;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle at right top,
+    #f5f5f5 20rpx,
+    transparent 20rpx,
+    transparent 20rpx
+  );
+}
+.coupon-card-container .coupon-left::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -2rpx;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle at right bottom,
+    #f5f5f5 20rpx,
+    transparent 20rpx,
+    transparent 20rpx
+  );
+}
+.coupon-card-container .coupon-right {
+  flex: 3;
+  background: #ffcc00;
+  border-radius: 0 18rpx 18rpx 0;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 80rpx;
+}
+.coupon-card-container .coupon-right .discount {
+  display: flex;
+  align-items: flex-end;
+  vertical-align: bottom;
+}
+.coupon-card-container .coupon-right .discount > text {
+  display: inline-block;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.coupon-card-container .coupon-right .discount .unit {
+  margin-left: 6rpx;
+  font-size: 30rpx;
+  font-weight: normal;
+  line-height: 20rpx;
+  height: 20rpx;
+}
+
+.coupon-card-container .coupon-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle at left top,
+    #f5f5f5 20rpx,
+    transparent 20rpx,
+    transparent 20rpx
+  );
+}
+
+.coupon-card-container .coupon-right::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle at left bottom,
+    #f5f5f5 20rpx,
+    transparent 20rpx,
+    transparent 20rpx
+  );
+}

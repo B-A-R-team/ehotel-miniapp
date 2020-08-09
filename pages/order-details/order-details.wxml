@@ -4,10 +4,9 @@
   <view class="room-desc">
     <view class="title">
       <text>{{room.title}}</text>
-      <navigator url="/pages/room-detail/room-detail?roomid={{room['id']}}">房间详情 ＞</navigator>
+      <navigator url="/pages/room-detail/room-detail?roomid={{roomId}}">房间详情 ＞</navigator>
     </view>
     <view class="date">{{inTime}}/{{outTime}} 共{{diffDay}}晚</view>
-    <view class="remarks">{{room.remarks}}</view>
   </view>
   <!-- 订单信息 -->
   <view class="create-order">

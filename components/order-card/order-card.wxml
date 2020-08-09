@@ -2,13 +2,13 @@
 <view class="ordercard-container">
   <view class="title">
     <view>{{title}}</view>
-    <view class="status">{{status}}</view>
+    <view class="status {{status === '待入住' ? 'ing' : status === '待付款' ? 'nopay' : ''}}">{{status}}</view>
   </view>
   <view class="remarks">
     <image src="/assets/default_room.jpg" />
     <view>
       <view class="time">{{time}}下单</view>
-      <view class="desc">共 {{member_num}} 人 入住</view>
+      <view class="desc" style="color: #585858;">由 {{member}} 登记入住</view>
       <view class="discount">使用优惠 {{discount}}</view>
     </view>
   </view>

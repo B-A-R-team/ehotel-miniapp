@@ -1,0 +1,18 @@
+<!--pages/vipcenter/vipcenter.wxml-->
+<view class="vip-container">
+  <vip-card
+    name="{{vip_info['name']}}"
+    time="{{vip_info['time']}}"
+    isVip="{{vip_info['isVip']}}"
+    vipId="{{vip_info['vipId']}}"
+  ></vip-card>
+  <view class="vip-right">
+    <view class="title">会员权益</view>
+    <view class="right-wrapper">
+      <view wx:for="{{powerList}}" wx:key="index">
+        <image src="{{item['thumb']}}" />
+        <view class="label">{{item['label']}}</view>
+      </view>
+    </view>
+  </view>
+</view>

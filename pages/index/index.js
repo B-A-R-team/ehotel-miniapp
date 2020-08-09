@@ -23,10 +23,10 @@ Page({
     openCale: false,
     selectedDates: [],
     hotel_location_info: {
-      name: '棕榈树酒店',
+      name: '',
       // 113.610225,34.738107
-      latitude: 34.738107,
-      longitude: 113.610225,
+      latitude: 0,
+      longitude: 0,
     },
     phone: '001',
   },
@@ -43,6 +43,7 @@ Page({
         const { code, data } = res.data;
         const localtion = {
           name: data.address + data.title,
+          title: data.title,
           latitude: data.latitude,
           longitude: data.longitude,
         };

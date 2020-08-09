@@ -1,0 +1,40 @@
+/* pages/vipcenter/vipcenter.wxss */
+.vip-container {
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 20rpx;
+}
+
+.vip-container .vip-right {
+  display: flex;
+  flex-direction: column;
+}
+.vip-container .vip-right .title {
+  font-size: 34rpx;
+  margin: 30rpx;
+}
+.vip-container .vip-right image {
+  width: 100rpx;
+  height: 100rpx;
+  box-sizing: border-box;
+  padding: 15rpx;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at left top,
+    rgb(250, 228, 178),
+    rgb(248, 211, 142),
+    rgb(247, 203, 126)
+  );
+  margin-bottom: 10rpx;
+}
+.vip-container .vip-right .right-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.vip-container .vip-right .right-wrapper > view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 36rpx;
+}

@@ -1,0 +1,13 @@
+<!--components/coupon-card/coupon-card.wxml-->
+<view class="coupon-card-container">
+  <view class="coupon-left">
+    <view class="title">{{title}}</view>
+    <view class="time">有效期至{{time}}</view>
+  </view>
+  <view class="coupon-right">
+    <view class="discount">
+      <text class="num">{{num}}</text>
+      <text class="unit">{{unit}}</text>
+    </view>
+  </view>
+</view>

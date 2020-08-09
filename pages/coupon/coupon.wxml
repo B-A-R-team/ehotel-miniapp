@@ -1,0 +1,12 @@
+<!--pages/coupon/coupon.wxml-->
+<view class="coupon-container">
+  <block wx:for="{{couponList}}" wx:key="index">
+    <coupon-card
+      title="{{item['title']}}"
+      time="{{item['time']}}"
+      num="{{item['num']}}"
+      unit="{{item['unit']}}"
+    ></coupon-card>
+    <view class="white"></view>
+  </block>
+</view>

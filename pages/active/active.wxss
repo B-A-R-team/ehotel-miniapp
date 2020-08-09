@@ -1,0 +1,5 @@
+/* pages/active/active.wxss */
+.active-container {
+  width: 100vw;
+  padding-bottom: 1rem;
+}

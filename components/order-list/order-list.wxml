@@ -6,7 +6,7 @@
     title="{{item.title}}"
     status="{{item.status}}"
     time="{{item.time}}"
-    member_num="{{item.member_num}}"
+    member="{{item.member}}"
     discount="{{item.discount}}"
   ></order-card>
 </view>

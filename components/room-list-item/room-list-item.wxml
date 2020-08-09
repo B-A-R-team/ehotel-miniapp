@@ -8,7 +8,8 @@
     <view class="remarks">{{remarks}}</view>
     <view class="price-wrapper">
       <text class="new-price">￥{{newPrice}}</text>
-      <text class="old-price">{{oldPrice}}</text>
+      <text class="old-price" wx:if="{{newPrice !== oldPrice}}">{{oldPrice}}</text>
+      <text class="old-price" wx:else></text>
       <text
         class="last-count {{lastCount === 0 ? 'disabled' : ''}}"
         bind:tap="toOrder"

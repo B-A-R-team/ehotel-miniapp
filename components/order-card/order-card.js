@@ -13,8 +13,8 @@ Component({
     time: {
       type: String,
     },
-    member_num: {
-      type: Number,
+    member: {
+      type: String,
     },
     discount: {
       type: String,

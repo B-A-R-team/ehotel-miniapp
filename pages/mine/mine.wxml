@@ -17,15 +17,15 @@
   <view class="services">
     <view>常用服务</view>
     <view class="service-content">
-      <navigator class="active-page service-item">
+      <navigator class="active-page service-item" url="/pages/active/active">
         <image class="service-icon" src="/assets/active64.png" style="margin-bottom: 5px;" />
         <text>活动中心</text>
       </navigator>
-      <navigator class="coupon-page service-item">
+      <navigator class="coupon-page service-item" url="/pages/coupon/coupon">
         <image class="service-icon" src="/assets/coupon64.png" />
         <text>优惠券</text>
       </navigator>
-      <navigator class="vip-page service-item">
+      <navigator class="vip-page service-item" url="/pages/vipcenter/vipcenter">
         <image class="service-icon" src="/assets/vip64.png" />
         <text>会员中心</text>
       </navigator>

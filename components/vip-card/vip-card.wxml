@@ -1,0 +1,18 @@
+<!--components/vip-card/vip-card.wxml-->
+<view class="vip-card-container">
+  <view class="card-content">
+    <view>
+      <view class="vip-name">{{name}}</view>
+      <view class="lose-time">{{time}}到期</view>
+    </view>
+    <view class="vip-btn-wrapper">
+      <button
+        class="vip-btn"
+        hover-class="vip-btn-active"
+        plain="true"
+        size="mini"
+      >{{isVip ? '立即续费' : '成为会员'}}</button>
+    </view>
+  </view>
+  <view class="vip-id">NO. {{vipId}}</view>
+</view>

@@ -5,7 +5,10 @@
     "pages/recharge/recharge",
     "pages/order/order",
     "pages/order-details/order-details",
-    "pages/room-detail/room-detail"
+    "pages/room-detail/room-detail",
+    "pages/active/active",
+    "pages/coupon/coupon",
+    "pages/vipcenter/vipcenter"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,64 @@
+/* components/vip-card/vip-card.wxss */
+.vip-card-container {
+  border-radius: 30rpx;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: rgb(110, 70, 27);
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
+}
+
+.vip-card-container .card-content {
+  padding: 30rpx 50rpx 0 50rpx;
+  flex: 5;
+  background: radial-gradient(
+    circle at left top,
+    rgb(250, 228, 178),
+    rgb(248, 211, 142),
+    rgb(247, 203, 126)
+  );
+  border-radius: 30rpx 30rpx 0 0;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.vip-card-container .card-content .vip-name {
+  font-size: 38rpx;
+  margin-bottom: 10rpx;
+}
+
+.vip-card-container .card-content .lose-time {
+  font-size: 26rpx;
+  font-weight: lighter;
+}
+
+.vip-card-container .card-content .vip-btn-wrapper .vip-btn {
+  display: inline-block;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: rgb(113, 73, 30);
+  width: 180rpx;
+  border-radius: 90rpx;
+  border-color: rgb(189, 147, 79);
+}
+.vip-card-container .card-content .vip-btn-wrapper .vip-btn-active {
+  color: rgb(247, 203, 126);
+  background-color: rgb(189, 147, 79);
+}
+.vip-card-container .vip-id {
+  box-sizing: border-box;
+  padding: 10rpx 50rpx;
+  flex: 2;
+  background: radial-gradient(
+    circle at left top,
+    rgb(251, 232, 193),
+    rgb(249, 222, 170),
+    rgb(248, 214, 154)
+  );
+  border-radius: 0 0 30rpx 30rpx;
+
+  display: flex;
+  align-items: center;
+}

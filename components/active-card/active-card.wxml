@@ -1,0 +1,9 @@
+<!--components/active-card/active-card.wxml-->
+<navigator class="active-card-container">
+  <image class="active-image" src="{{imageUrl}}" />
+  <view class="desc">
+    <view class="title">{{title}}</view>
+    <view class="status {{status === '进行中' ? 'ing' : status === '未开始' ? 'will' : ''}}">{{status}}</view>
+  </view>
+  <view class="time">{{time}}</view>
+</navigator>

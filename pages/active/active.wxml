@@ -1,0 +1,11 @@
+<!--pages/active/active.wxml-->
+<view class="active-container">
+  <block wx:for="{{activeList}}" wx:key="index">
+    <active-card
+      imageUrl="{{item['imageUrl']}}"
+      title="{{item['title']}}"
+      status="{{item['status']}}"
+      time="{{item['time']}}"
+    ></active-card>
+  </block>
+</view>

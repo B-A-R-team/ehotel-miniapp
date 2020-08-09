@@ -17,7 +17,7 @@
   <view class="search-wrapper">
     <!-- 地图 -->
     <view class="map">
-      <text>{{hotel_location_info.name}}</text>
+      <text>{{hotel_location_info.title}}</text>
       <button bindtap="goHotel">查看路线</button>
       <button class="phone-btn" bindtap="callPhone">呼叫</button>
     </view>

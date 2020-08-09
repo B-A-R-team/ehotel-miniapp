@@ -23,8 +23,23 @@
   font-weight: bold;
 }
 .ordercard-container .title > view:last-child {
-  color: #8f8f8f;
+  color: #909399;
+  background-color: #f4f4f5;
+  width: 120rpx;
+  text-align: center;
+  border-radius: 6rpx;
+  line-height: 44rpx;
+  height: 44rpx;
 }
+.ordercard-container .title > view.ing {
+  color: #67c23a;
+  background-color: #f0f9eb;
+}
+.ordercard-container .title > view.nopay {
+  color: #f56c6c;
+  background-color: #fef0f0;
+}
+
 .ordercard-container .remarks {
   justify-content: flex-start;
 }

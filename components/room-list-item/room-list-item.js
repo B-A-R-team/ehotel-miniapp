@@ -58,9 +58,17 @@ Component({
           content: '该类房间已无空房',
         });
       }
-      const { roomId, inTime, outTime, diffDay } = this.properties;
+      const {
+        roomId,
+        inTime,
+        outTime,
+        diffDay,
+        title,
+        newPrice,
+        lastCount,
+      } = this.properties;
       wx.navigateTo({
-        url: `/pages/order-details/order-details?roomId=${roomId}&inTime=${inTime}&outTime=${outTime}&diffDay=${diffDay}`,
+        url: `/pages/order-details/order-details?roomId=${roomId}&inTime=${inTime}&outTime=${outTime}&diffDay=${diffDay}&title=${title}&price=${newPrice}&empty_count=${lastCount}`,
       });
     },
     toDetail() {
