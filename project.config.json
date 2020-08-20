@@ -77,8 +77,8 @@
 				},
 				{
 					"id": 2,
-					"name": "pages/vipcenter/vipcenter",
-					"pathName": "pages/vipcenter/vipcenter",
+					"name": "pages/order-finish/order-finish",
+					"pathName": "pages/order-finish/order-finish",
 					"query": "",
 					"scene": null
 				}

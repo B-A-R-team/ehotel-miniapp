@@ -8,17 +8,11 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    // 日历配置
-    calendarConfig: {
-      multi: true, // 是否开启多选
-      disableMode: {
-        // 禁用今天天之前的所有日期
-        type: 'before',
-      },
-    },
     swiperList: [],
     inTime: util.formatTime(new Date(), true),
     outTime: util.formatTime(new Date(), true),
+    picker_start: util.formatTime(new Date(), true),
+    picker_end: util.yearAdd1(new Date()),
     diffDay: 0,
     openCale: false,
     selectedDates: [],
@@ -29,6 +23,36 @@ Page({
       longitude: 0,
     },
     phone: '001',
+  },
+
+  // 选择入住时间
+  bindInTimeChange(e) {
+    let { outTime } = this.data;
+
+    let diffDay =
+      (new Date(this.data.outTime) - new Date(e.detail.value)) /
+      (1000 * 60 * 60 * 24);
+
+    if (diffDay < 0) {
+      outTime = e.detail.value;
+      diffDay = 0;
+    }
+
+    this.setData({
+      inTime: e.detail.value,
+      diffDay,
+      outTime,
+    });
+  },
+
+  // 选择离店时间
+  bindOutTimeChange(e) {
+    this.setData({
+      outTime: e.detail.value,
+      diffDay:
+        (new Date(e.detail.value) - new Date(this.data.inTime)) /
+        (1000 * 60 * 60 * 24),
+    });
   },
 
   getHotelInfo() {
@@ -48,149 +72,39 @@ Page({
           longitude: data.longitude,
         };
         if (code === 0) {
-          console.log(data);
+          let swiperList = [];
+          data.swiperList.forEach((item) => {
+            swiperList.push(app.globalData['root_url'] + item);
+          });
+
           this.setData({
-            inTime: data.open_time,
-            outTime: data.end_time,
             phone: data.phone,
             hotel_location_info: localtion,
+            swiperList: swiperList,
           });
         }
       },
     });
   },
 
-  /**
-   * 获取轮播图数据
-   */
-  getSwiperList() {
-    wx.request({
-      url:
-        'https://mockapi.eolinker.com/7b7NMB9c75d613bc39c8f16e4e03a3d4a8f951750079dc5/swiper',
-      success: (res) => {
-        const { data } = res;
-        if (data.code === 0) {
-          this.setData({
-            swiperList: data.data.swiperList,
-          });
-        }
-      },
-    });
-  },
-  // 选择日期后
-  afterTapDay(e) {
-    let { selectedDates } = e.detail;
-    if (selectedDates.length <= 0) {
-      return;
-    }
-    // 开始时间
-    const start = selectedDates[0];
-    // 结束时间
-    const end = selectedDates[selectedDates.length - 1];
-
-    let toSet = this.createToSet(start, end);
-
-    if (selectedDates.length < 2) {
-      toSet = [...selectedDates];
-    }
-    console.log(toSet);
-    // 设置自动选中中间日期
-    this.calendar.setSelectedDays(toSet);
-    // 获得已选择的日期
-    const options = {
-      lunar: false, // 在配置showLunar为false, 但需返回农历信息时使用该选项
-    };
-    const selectedDay = this.calendar.getSelectedDay(options);
-
-    // 重设入住、离店时间和总共入住时间
-    const inTime = start.year + '-' + start.month + '-' + start.day;
-    const outTime = end.year + '-' + end.month + '-' + end.day;
-    this.setData({
-      selectedDates: selectedDay,
-      inTime,
-      outTime,
-      diffDay: selectedDay.length - 1,
-    });
-  },
   // 改变日历状态
   changeCalendarStatus() {
     this.setData({
       openCale: !this.data.openCale,
     });
   },
-  // 生成toSet - 用来范围选择日期
-  createToSet(start, end) {
-    const startYear = start.year;
-    const endYear = end.year;
 
-    const startMonth = start.month;
-    const endMonth = end.month;
-
-    const startDay = start.day;
-    const endDay = end.day;
-
-    // return 数组
-    let toSet = [];
-
-    // 如果在同年同月
-    if (startMonth === endMonth && startYear === endYear) {
-      for (let i = startDay; i <= endDay; i++) {
-        toSet.push({ year: startYear, month: startMonth, day: i });
-      }
-      return toSet;
-    }
-    // 如果在同年
-    if (startYear === endYear) {
-      for (let m = startMonth; m <= endMonth; m++) {
-        for (let d = 1; d < 32; d++) {
-          // 2月  闰年
-          if (
-            m === 2 &&
-            util.isLeapYear(startYear) &&
-            (d === 30 || d + startDay - 1 === 30)
-          ) {
-            break;
-          }
-          // 2月  平年
-          if (
-            m === 2 &&
-            !util.isLeapYear(startYear) &&
-            (d === 29 || d + startDay - 1 === 29)
-          ) {
-            break;
-          }
-          if ((d === 31 || d + startDay - 1 === 31) && !util.is31(m)) {
-            // 一个月 30 天
-            break;
-          }
-          if (m === startMonth) {
-            // 判断计算后的日期是否超过31
-            if (d + startDay - 1 >= 32) {
-              break;
-            }
-            // 和起始日期同月
-            toSet.push({ year: startYear, month: m, day: d + startDay - 1 });
-          } else if (m === endMonth && d > endDay) {
-            // 超过结束日期
-            return toSet;
-          } else {
-            toSet.push({ year: startYear, month: m, day: d });
-          }
-        }
-      }
-    }
-
-    /**
-     * @todo 不同年
-     */
-  },
   goHotel() {
     let plugin = requirePlugin('routePlan');
     let key = 'VGDBZ-M7Z35-D2TIR-QPCW4-MVOMH-FDBTA'; //使用在腾讯位置服务申请的key
     let referer = 'BAR电竞酒店平台'; //调用插件的app的名称
     const { name, latitude, longitude } = this.data.hotel_location_info;
     // 终点
-    let endPoint = JSON.stringify({ name, latitude, longitude });
+    let endPoint = JSON.stringify({
+      name,
+      latitude,
+      longitude,
+    });
     wx.navigateTo({
       url:
         'plugin://routePlan/index?key=' +
@@ -240,9 +154,10 @@ Page({
       });
     }
 
-    this.getSwiperList();
     const time = util.formatTime(new Date(), true);
-    this.setData({ time });
+    this.setData({
+      time,
+    });
   },
 
   onShow: function () {

@@ -8,7 +8,8 @@
     "pages/room-detail/room-detail",
     "pages/active/active",
     "pages/coupon/coupon",
-    "pages/vipcenter/vipcenter"
+    "pages/vipcenter/vipcenter",
+    "pages/order-finish/order-finish"
   ],
   "window": {
     "backgroundTextStyle": "light",

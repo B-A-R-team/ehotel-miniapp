@@ -45,6 +45,7 @@ Page({
             const { user, token } = res.data;
 
             try {
+              wx.setStorageSync('userId', user['_id']);
               wx.setStorageSync('nickname', user['nickname']);
               wx.setStorageSync('avatar_url', user['avatar_url']);
               wx.setStorageSync('intergal', user['integral']);
@@ -53,7 +54,11 @@ Page({
             } catch (e) {
               console.log(e);
             }
-
+            app.globalData['userInfo'] = {
+              userId: user['_id'],
+              nickName: user['nickname'],
+              avatarUrl: user['avatar_url'],
+            };
             app.globalData['intergal'] = user['integral'];
             app.globalData['paid_balance'] = user['paid_balance'];
             this.setData({

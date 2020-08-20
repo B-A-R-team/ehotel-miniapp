@@ -10,7 +10,7 @@
     duration="{{500}}"
   >
     <swiper-item wx:for="{{swiperList}}" wx:key="index">
-      <image class="swiper-image" src="{{item['imgSrc']}}" mode="scaleToFill" />
+      <image class="swiper-image" src="{{item}}" mode="scaleToFill" />
     </swiper-item>
   </swiper>
   <!-- 选择日期栏 -->
@@ -34,11 +34,32 @@
       </view>
     </view>
     <view class="cale {{openCale ? 'isopen' : 'isclose'}}">
-      <calendar
-        calendarConfig="{{calendarConfig}}"
-        bind:onTapDay="onTapDay"
-        bind:afterTapDay="afterTapDay"
-      ></calendar>
+      <view class="picker-section">
+        <view class="picker-label">选择入住日期</view>
+        <picker
+          class="picker-val"
+          mode="date"
+          value="{{inTime}}"
+          start="{{picker_start}}"
+          end="2021-09-01"
+          bindchange="bindInTimeChange"
+        >
+          <view class="picker">{{inTime}}</view>
+        </picker>
+      </view>
+      <view class="picker-section">
+        <view class="picker-label">选择离店日期</view>
+        <picker
+          class="picker-val"
+          mode="date"
+          value="{{outTime}}"
+          start="{{picker_start}}"
+          end="2021-09-01"
+          bindchange="bindOutTimeChange"
+        >
+          <view class="picker">{{outTime}}</view>
+        </picker>
+      </view>
     </view>
     <button
       class="search-btn"

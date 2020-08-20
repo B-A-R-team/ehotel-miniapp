@@ -1,0 +1,61 @@
+<!--pages/order-finish/order-finish.wxml-->
+<view class="finish-container">
+  <!-- 订单信息 -->
+  <view>
+    <text>订单信息</text>
+    <view>
+      <view class="label">订单状态</view>
+      <view>{{orderInfo['status']}}</view>
+    </view>
+    <view>
+      <view class="label">订单号</view>
+      <view>{{orderInfo['order_id']}}</view>
+    </view>
+    <view>
+      <view class="label">下单时间</view>
+      <view>{{orderInfo['time']}}</view>
+    </view>
+  </view>
+  <!-- 住房信息 -->
+  <view>
+    <text>住房信息</text>
+    <view>
+      <view class="label">房间名称</view>
+      <view>{{orderInfo['room_title']}}</view>
+    </view>
+    <view>
+      <view class="label">房间数</view>
+      <view>{{orderInfo['room_count']}}</view>
+    </view>
+    <view>
+      <view class="label">入住人</view>
+      <view>{{orderInfo['memeber']}}</view>
+    </view>
+    <view>
+      <view class="label">联系手机</view>
+      <view>{{orderInfo['phone']}}</view>
+    </view>
+  </view>
+  <!-- 付款信息 -->
+  <view class="payment">
+    <text>付款信息</text>
+    <view>
+      <view class="label">支付方式</view>
+      <view>{{orderInfo['payment_style']}}</view>
+    </view>
+    <view>
+      <view class="label">房间价格</view>
+      <view>￥{{orderInfo['price']}}</view>
+    </view>
+    <view>
+      <view class="label">优惠券</view>
+      <view>{{orderInfo['coupon']}}</view>
+    </view>
+    <view class="money">
+      <view class="label">总计</view>
+      <view>￥{{orderInfo['totel_price']}}</view>
+    </view>
+  </view>
+
+  <view class="remarks">如对订单有疑问，请联系酒店客服</view>
+</view>

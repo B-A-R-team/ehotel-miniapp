@@ -4,6 +4,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    orderId: {
+      type: String,
+    },
     title: {
       type: String,
     },
@@ -32,9 +35,9 @@ Component({
    */
   methods: {
     toMore: function () {
-      wx.showModal({
-        title: '提示',
-        content: '跳转详情页 - 未完成',
+      const { orderId } = this.properties;
+      wx.navigateTo({
+        url: `/pages/order-finish/order-finish?orderId=${orderId}`,
       });
     },
   },

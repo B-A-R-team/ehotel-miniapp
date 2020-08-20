@@ -8,15 +8,13 @@ App({
       success: () => {
         console.log('登陆未过期');
         // 登陆未过期，取出数据
+        const userId = wx.getStorageSync('userId') || null;
         const nickName = wx.getStorageSync('nickname') || null;
         const avatarUrl = wx.getStorageSync('avatar_url') || null;
         const intergal = wx.getStorageSync('intergal') || 0;
         const paid_balance = wx.getStorageSync('paid_balance') || 0;
 
-        this.globalData.userInfo = {
-          nickName,
-          avatarUrl,
-        };
+        this.globalData.userInfo = { userId, nickName, avatarUrl };
         this.globalData['intergal'] = intergal;
         this.globalData['paid_balance'] = paid_balance;
       },

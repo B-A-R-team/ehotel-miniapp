@@ -9,5 +9,5 @@
       data-index="{{index}}"
     >{{item}}</view>
   </view>
-  <sub-order class="sub-order" id="sub" />
+  <sub-order class="sub-order" id="sub" list="{{list}}" isLogin="{{isLogin}}" />
 </view>

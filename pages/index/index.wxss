@@ -90,6 +90,33 @@
   font-weight: normal;
 }
 
+.home-container .cale {
+  padding-left: 100rpx;
+  padding-right: 100rpx;
+}
+
+.home-container .cale .picker-section {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #969696;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.home-container .cale .picker-section:first-child {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.home-container .cale .picker-section .picker-label {
+  margin-right: 1rem;
+  color: #6f6f6f;
+}
+
 .home-container .room-wrapper {
   margin-top: 1rem;
 }

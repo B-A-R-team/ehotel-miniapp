@@ -1,5 +1,6 @@
 <!--components/sub-order/sub-order.wxml-->
 <view class="subOrder-container">
-  <view wx:if="{{orderList.length === 0}}" class="no-data">暂无消费记录{{activeItem}}</view>
+  <view class="no-data" wx:if="{{!isLogin}}">请前往"我的"页面登陆</view>
   <order-list wx:else orderList="{{orderList}}"></order-list>
+  <!-- <order-list wx:else orderList="{{orderList.length === 0 ? list : orderList}}"></order-list> -->
 </view>

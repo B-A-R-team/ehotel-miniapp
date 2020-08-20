@@ -1,4 +1,5 @@
 <!--pages/order-details/order-details.wxml-->
+
 <view class="details-container">
   <!-- 房间信息 -->
   <view class="room-desc">
@@ -8,9 +9,9 @@
     </view>
     <view class="date">{{inTime}}/{{outTime}} 共{{diffDay}}晚</view>
   </view>
+
   <!-- 订单信息 -->
   <view class="create-order">
-    <view class="tips">房间仅剩{{room.empty_count}}，请尽快预定以免被人抢订</view>
     <view class="room-count-wrapper">
       <view>房间数</view>
       <view>
@@ -21,11 +22,11 @@
     </view>
     <view class="member">
       <view>入住人</view>
-      <input placeholder="每间填一位入住人的姓名" />
+      <input placeholder="填一位入住人的姓名" value="{{member['name']}}" bindinput="inputName" />
     </view>
     <view class="phone">
       <view>联系手机</view>
-      <input placeholder="填写入住人的手机号" />
+      <input placeholder="填写入住人的手机号" value="{{member['phone']}}" bindinput="inputPhone" />
     </view>
     <view class="date">
       <view>预计到店</view>
@@ -44,7 +45,7 @@
       <view>优惠券</view>
       <view>
         <picker bindchange="bindCouponChange" value="{{couponIdx}}" range="{{coupons}}">
-          <view class="picker" wx:if="{{couponIdx !== -1}}">-￥{{coupons[couponIdx]}}</view>
+          <view class="picker" wx:if="{{couponIdx > -1}}">-￥{{coupons[couponIdx]}}</view>
           <view class="picker" wx:else>未选择 ＞</view>
         </picker>
       </view>
@@ -55,9 +56,22 @@
       <switch bindchange="useVipChange" color="#ffcc00" checked="{{useIntergal}}" />
     </view>
   </view>
+  <!-- 备注 -->
+  <view class="remarks">
+    <textarea
+      adjust-position="{{true}}"
+      placeholder="填写备注（不超过140字）"
+      maxlength="140"
+      style="height: 120rpx;"
+      value="{{remarks}}"
+      bindinput="inputRemarks"
+    ></textarea>
+  </view>
+
   <view class="explain">
     <rich-text nodes="{{explain_html}}"></rich-text>
   </view>
+
   <view class="bottom-button">
     <view>￥{{total_price}}</view>
     <view

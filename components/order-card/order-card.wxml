@@ -9,7 +9,7 @@
     <view>
       <view class="time">{{time}}下单</view>
       <view class="desc" style="color: #585858;">由 {{member}} 登记入住</view>
-      <view class="discount">使用优惠 {{discount}}</view>
+      <view class="discount">使用优惠 {{discount == 0 ? '无' : discount}}</view>
     </view>
   </view>
   <view class="btns">

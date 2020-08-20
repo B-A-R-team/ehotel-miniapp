@@ -1,8 +1,10 @@
 <!--components/order-list/order-list.wxml-->
 <view class="orderlist-container">
+  <view wx:if="{{orderList.length === 0}}" class="no-data">暂无消费记录</view>
   <order-card
     wx:for="{{orderList}}"
     wx:key="index"
+    orderId="{{item.id}}"
     title="{{item.title}}"
     status="{{item.status}}"
     time="{{item.time}}"
