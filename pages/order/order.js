@@ -55,8 +55,9 @@ Page({
 
     if (!userInfo['userId']) {
       isLogin = false;
+      wx.hideLoading();
     }
-
+    console.log(isLogin)
     this.setData({
       isLogin,
     });

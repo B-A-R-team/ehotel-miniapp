@@ -61,7 +61,9 @@ Component({
       });
     },
   },
-  ready() {},
+  ready() {
+    console.log(this.properties.isLogin)
+  },
   attached() {
     this.setData({
       userId: app.globalData['hotel_id'],
