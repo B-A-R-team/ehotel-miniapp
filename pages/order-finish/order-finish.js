@@ -1,4 +1,8 @@
+const util = require('../../utils/util');
+
 // pages/order-finish/order-finish.js
+const app = getApp();
+
 Page({
   /**
    * 页面的初始数据
@@ -11,20 +15,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    this.setData({
-      orderInfo: {
-        status: '已完成',
-        order_id: '123456999999',
-        time: '2020-01-01 09:09:09',
-        room_title: '标准间',
-        room_count: 1,
-        memeber: '小明',
-        phone: '12312312331',
-        payment_style: '微信支付',
-        price: 200,
-        coupon: '无',
-        totel_price: 200,
+    wx.showLoading({ title: '加载中' });
+    const { orderId } = options;
+
+    this.getOrderInfo(orderId);
+  },
+
+  // 获取订单信息
+  getOrderInfo: function (id) {
+    const token = wx.getStorageSync('token') || null;
+    wx.request({
+      url: `${app.globalData.root_url}records/getbyId`,
+      header: {
+        Authorization: token.replace('Bear ', ''),
+      },
+      data: {
+        id,
+      },
+      success: (res) => {
+        const { code, data } = res.data;
+        if (code === 0) {
+          this.setData({
+            orderInfo: {
+              status: data['status'],
+              order_id: id,
+              time: util.formatTime(new Date(data['time'])),
+              room_title: data['title'],
+              room_count: 1,
+              memeber: JSON.parse(data['member'])['name'],
+              phone: JSON.parse(data['member'])['phone'],
+              payment_style: '微信支付',
+              price: data['price'] + data['discount'],
+              coupon: data['discount'],
+              totel_price: data['price'],
+            },
+          });
+          wx.hideLoading();
+        }
       },
     });
   },

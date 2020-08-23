@@ -25,10 +25,6 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/recharge/recharge",
-        "text": "充值"
-      },
-      {
         "pagePath": "pages/order/order",
         "text": "订单"
       },

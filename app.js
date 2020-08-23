@@ -1,6 +1,6 @@
 //app.js
 const HOTELID = '5f15898e9e625204e0c20b29';
-const ROOTURL = 'http://localhost:1239/';
+const ROOTURL = 'https://www.barteam.cn:1239/';
 
 App({
   onLaunch: function () {

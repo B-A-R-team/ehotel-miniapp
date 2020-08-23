@@ -1,5 +1,43 @@
 <!-- pages/recharge/recharge.wxml -->
 <view class="recharge-container">
-  <ehotel-nav>充值</ehotel-nav>
-  <text>pages/recharge/recharge.wxml</text>
+  <view class="surplus">
+    <view class="title">
+      <image src="/assets/money.png" />
+      <text>目前余额</text>
+    </view>
+    <view class="val">￥{{balance}}</view>
+  </view>
+  <view class="select-money">
+    <view class="label">请选择充值金额</view>
+    <view class="money-class">
+      <view
+        class="money-item {{selected === item['idx'] ? 'active' : ''}}"
+        wx:for="{{select_money}}"
+        wx:key="index"
+        bind:tap="changeMoney"
+        data-idx="{{item['idx']}}"
+      >
+        <view>￥{{item['value']}}</view>
+        <view class="intergal">赠送{{item['intergal']}}积分</view>
+      </view>
+    </view>
+    <view class="money-other">
+      <input type="text" placeholder="请输入其他金额" />
+    </view>
+  </view>
+  <view class="tips">
+    <view class="label">充值说明</view>
+    <view class="content">
+      <view>如需发票，请向前台索要</view>
+      <view>最晚退房时间为第二天中午12:00</view>
+    </view>
+  </view>
+  <view class="recharge-btn">
+    <view class="agreement">
+      <radio checked="{{isAgree}}" bind:tap="changeAgree" color="#ffcc00" />
+      <text>阅读并同意</text>
+      <navigator>《BAR网络服务免责声明》</navigator>
+    </view>
+    <button disabled="{{!isAgree}}" bind:tap="showPayment">确认支付 ￥{{select_money[selected]['value']}}</button>
+  </view>
 </view>

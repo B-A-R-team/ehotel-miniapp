@@ -15,9 +15,9 @@
     <view class="room-count-wrapper">
       <view>房间数</view>
       <view>
-        <button bindtap="decreaseRoomCount">-</button>
+        <button bindtap="decreaseRoomCount" disabled="{{true}}">-</button>
         <text>{{room_count}}</text>
-        <button bindtap="increaseRoomCount">+</button>
+        <button bindtap="increaseRoomCount" disabled="{{true}}">+</button>
       </view>
     </view>
     <view class="member">

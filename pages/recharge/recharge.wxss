@@ -1,1 +1,126 @@
 /* pages/recharge/recharge.wxss */
+.recharge-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.recharge-container > view {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  box-shadow: 1px 1px 10px rgba(20, 20, 20, 0.1);
+}
+
+.recharge-container .surplus {
+  text-align: center;
+}
+.recharge-container .surplus .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recharge-container .surplus .val {
+  margin-top: 10rpx;
+  font-size: 50rpx;
+  color: #ffcc00;
+}
+
+.recharge-container .surplus image {
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+}
+
+.recharge-container .select-money .label,
+.recharge-container .tips .label {
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.recharge-container .select-money .money-class {
+  display: grid;
+  grid-template-columns: repeat(3, 220rpx);
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: space-between;
+}
+
+.recharge-container .select-money .money-item {
+  border: 2rpx solid #8f8f8f;
+  border-radius: 10rpx;
+  padding: 14rpx 16rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.recharge-container .select-money .money-item:first-child,
+.recharge-container .select-money .money-item:nth-child(4n) {
+  margin-left: 0;
+}
+
+.recharge-container .select-money .money-item:last-child,
+.recharge-container .select-money .money-item:nth-child(3n) {
+  margin-right: 0;
+}
+
+.recharge-container .select-money .money-item .intergal {
+  font-size: 26rpx;
+  color: #9d9d9d;
+}
+
+.recharge-container .select-money .money-item.active {
+  border-color: #ffcc00;
+  color: #ffcc00;
+}
+
+.recharge-container .select-money .money-item.active .intergal {
+  color: #ffcc00;
+}
+
+.recharge-container .select-money .money-other {
+  border-radius: 10rpx;
+  background-color: #f4f4f4;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 10rpx 20rpx;
+  font-size: 26rpx;
+}
+
+.recharge-container .tips .content {
+  color: #696969;
+  font-size: 28rpx;
+}
+
+.recharge-container .tips .content > view {
+  margin-bottom: 10rpx;
+}
+
+.recharge-container .recharge-btn {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  margin: 0;
+}
+
+.recharge-container .recharge-btn .agreement {
+  display: flex;
+  align-items: center;
+}
+.recharge-container .recharge-btn .agreement navigator {
+  color: #ffcc00;
+}
+.recharge-container .recharge-btn button {
+  width: 100%;
+  background-color: #ffcc00;
+  font-weight: normal;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}

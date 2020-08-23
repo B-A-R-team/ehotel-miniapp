@@ -9,9 +9,8 @@ Page({
   },
   // 去充值
   toRecharge: function () {
-    wx.showModal({
-      title: '提示',
-      content: '跳转充值页 - 未完成',
+    wx.navigateTo({
+      url: '/pages/recharge/recharge',
     });
   },
   // 积分兑换
