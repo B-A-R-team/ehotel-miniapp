@@ -19,7 +19,7 @@ Page({
   },
   getOrderList: function () {
     const userId = wx.getStorageSync('userId') || null;
-    const token = wx.getStorageSync('token') || null;
+    const token = wx.getStorageSync('token') || '';
     wx.request({
       url: `${app.globalData.root_url}records/getby`,
       header: {
@@ -30,6 +30,7 @@ Page({
       },
       success: (res) => {
         const { code, data } = res.data;
+        console.log(data)
         let list = [];
         data.forEach((item) => {
           list.push({
