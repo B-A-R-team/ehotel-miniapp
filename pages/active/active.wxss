@@ -3,3 +3,11 @@
   width: 100vw;
   padding-bottom: 1rem;
 }
+.active-container .no-resource {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7a7a7a;
+}

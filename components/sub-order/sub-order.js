@@ -62,7 +62,6 @@ Component({
     },
   },
   ready() {
-    console.log(this.properties.isLogin)
   },
   attached() {
     this.setData({

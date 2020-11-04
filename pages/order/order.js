@@ -20,6 +20,11 @@ Page({
   getOrderList: function () {
     const userId = wx.getStorageSync('userId') || null;
     const token = wx.getStorageSync('token') || null;
+
+    if (!token || !userId) {
+      return;
+    }
+
     wx.request({
       url: `${app.globalData.root_url}records/getby`,
       header: {
@@ -53,11 +58,11 @@ Page({
     const userInfo = app.globalData['userInfo'] || null;
     let isLogin = true;
 
-    if (!userInfo['userId']) {
+    if (!userInfo || !userInfo['userId']) {
       isLogin = false;
       wx.hideLoading();
     }
-    console.log(isLogin)
+    console.log(isLogin);
     this.setData({
       isLogin,
     });
