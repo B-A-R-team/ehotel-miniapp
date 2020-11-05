@@ -26,12 +26,12 @@ Page({
     }
 
     wx.request({
-      url: `${app.globalData.root_url}records/getby`,
+      url: `${app.globalData.root_url}record/getByuserId`,
       header: {
-        Authorization: token.replace('Bear ', ''),
+        Authorization: 'Bearer ' + token,
       },
       data: {
-        guestId: userId,
+        userId,
       },
       success: (res) => {
         const { code, data } = res.data;

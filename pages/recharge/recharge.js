@@ -1,4 +1,6 @@
 // pages/recharge/recharge.js
+const app = getApp();
+
 Page({
   data: {
     select_money: [],
@@ -27,9 +29,78 @@ Page({
   },
 
   showPayment: function () {
+    const userId = wx.getStorageSync('userId') || null;
+    const token = wx.getStorageSync('token') || null;
+    const integral = wx.getStorageSync('intergal') || null;
+
+    if (!token || !userId) {
+      return;
+    }
+
     wx.showModal({
       title: '支付',
       content: `￥${this.data.select_money[this.data.selected]['value']}`,
+      success: () => {
+        console.log(`￥${this.data.select_money[this.data.selected]['value']}`);
+        wx.request({
+          url: `${app.globalData['root_url']}user/increase`,
+          header: {
+            Authorization: 'Bearer ' + token,
+          },
+          method: 'PUT',
+          data: {
+            id: userId,
+            money: this.data.select_money[this.data.selected]['value'],
+          },
+          success: (res) => {
+            const { code, message } = res.data;
+            if (code === 0) {
+              // 添加积分
+              wx.request({
+                url: `${app.globalData['root_url']}user/changeIntegral`,
+                header: {
+                  Authorization: 'Bearer ' + token,
+                },
+                method: 'PUT',
+                data: {
+                  id: userId,
+                  integral:
+                    this.data.select_money[this.data.selected]['intergal'] +
+                    integral,
+                },
+                success: (res) => {
+                  const { code, message: integralMessage } = res.data;
+                  if (code === 0) {
+                    wx.navigateBack();
+                  } else {
+                    wx.showModal({
+                      title: '积分添加失败',
+                      content: integralMessage,
+                      success: () => {
+                        wx.navigateBack();
+                      },
+                      fail: () => {
+                        wx.navigateBack();
+                      },
+                    });
+                  }
+                },
+              });
+            } else {
+              wx.showModal({
+                title: '充值失败',
+                content: message,
+                success: () => {
+                  wx.navigateBack();
+                },
+                fail: () => {
+                  wx.navigateBack();
+                },
+              });
+            }
+          },
+        });
+      },
     });
   },
 

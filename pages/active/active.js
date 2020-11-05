@@ -13,15 +13,22 @@ Page({
     const { hotel_id } = app.globalData;
 
     wx.request({
-      url: `${app.globalData.root_url}actives/getby`,
-      data: { id: hotel_id },
+      url: `${app.globalData.root_url}active/getbyhotel`,
+      data: { hotelId: hotel_id },
       success: (res) => {
-        console.log(res);
-
         const { code, data } = res.data;
-        // data.forEach((item) => {
-        //   item['img_url'] = app.globalData['root_url'] + item['img_url'][0];
-        // });
+        data.forEach((item) => {
+          item['time'] = `${item['start_time']} - ${item['end_time']}`;
+          item['img_url'] =
+            app.globalData['root_url'] + item['img_url'].replace(/\\/g, '/');
+          if (new Date(item['start_time']).getTime() > Date.now()) {
+            item['status'] = '未开始';
+          } else if (new Date(item['end_time']).getTime() < Date.now()) {
+            item['status'] = '已结束';
+          } else {
+            item['status'] = '进行中';
+          }
+        });
         if (code === 0) {
           this.setData({
             activeList: data,
@@ -36,28 +43,6 @@ Page({
    */
   onLoad: function (options) {
     this.getActive();
-    // this.setData({
-    //   activeList: [
-    //     {
-    //       imageUrl: '/assets/active02.jpg',
-    //       title: '超级马里奥赛车8 - 线下友谊赛',
-    //       status: '未开始',
-    //       time: '2020/09/01 - 2020/09/15',
-    //     },
-    //     {
-    //       imageUrl: '/assets/active01.jpg',
-    //       title: '英雄联盟酒店巡回赛 - 个人SOLO赛',
-    //       status: '进行中',
-    //       time: '2020/08/15 - 2020/09/15',
-    //     },
-    //     {
-    //       imageUrl: '/assets/active03.png',
-    //       title: '英雄联盟酒店巡回赛 - 团队赛',
-    //       status: '已结束',
-    //       time: '2020/07/15 - 2020/08/15',
-    //     },
-    //   ],
-    // });
   },
 
   /**

@@ -123,3 +123,9 @@
     transparent 20rpx
   );
 }
+
+.coupon-card-container .coupon-left .title .limit {
+  color: #777;
+  font-size: 24rpx;
+  font-weight: normal;
+}

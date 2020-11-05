@@ -1,4 +1,7 @@
+const { formatTime } = require('../../utils/util');
+
 // pages/coupon/coupon.js
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -7,32 +10,53 @@ Page({
     couponList: [],
   },
 
+  getCoupon: function () {
+    wx.showLoading({ title: '加载中' });
+    const userId = wx.getStorageSync('userId');
+    wx.request({
+      url: `${app.globalData.root_url}coupon/getby/user/${userId}`,
+      method: 'GET',
+      success: (res) => {
+        wx.hideLoading();
+        const { code, data } = res.data;
+
+        if (data.length <= 0) {
+          return;
+        }
+
+        if (code === 0) {
+          // console.log(formatTime(new Date(data[0]['start_time']), true));
+          console.log(new Date(Number(data[0]['start_time'])));
+          this.setData({
+            couponList: data.map(
+              (item) =>
+                !item['is_used'] && {
+                  label: item['label'],
+                  is_full_down: item['is_full_down'],
+                  limit_price: item['limit_price'],
+                  reduce_price: item['reduce_price'],
+                  start_time: formatTime(
+                    new Date(Number(item['start_time'])),
+                    true
+                  ),
+                  end_time: formatTime(
+                    new Date(Number(item['end_time'])),
+                    true
+                  ),
+                  remarks: item['remarks'],
+                }
+            ),
+          });
+        }
+      },
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      couponList: [
-        {
-          title: '新人专享优惠券',
-          time: '2021/07/01',
-          num: 8,
-          unit: '折',
-        },
-        {
-          title: '中秋优惠券',
-          time: '2021/07/01',
-          num: 20,
-          unit: '元',
-        },
-        {
-          title: '周年庆优惠券',
-          time: '2021/07/01',
-          num: 5,
-          unit: '折',
-        },
-      ],
-    });
+    this.getCoupon();
   },
 
   /**

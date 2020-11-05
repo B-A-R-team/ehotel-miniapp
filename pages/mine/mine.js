@@ -6,6 +6,7 @@ Page({
     hasUserInfo: false,
     intergal: -1,
     paid_balance: -1,
+    hotelPhone: '',
   },
   // 去充值
   toRecharge: function () {
@@ -30,9 +31,9 @@ Page({
     wx.login({
       success: (res) => {
         wx.hideLoading();
-        console.log(res);
         const { code } = res;
         wx.request({
+          // url: `http://localhost:1239/user/loginforwx`,
           url: `${app.globalData.root_url}user/loginforwx`,
           method: 'POST',
           data: {
@@ -41,7 +42,7 @@ Page({
             avatar_url: avatarUrl,
           },
           success: (res) => {
-            const { user, token } = res.data;
+            const { user, token } = res.data.data;
 
             try {
               wx.setStorageSync('userId', user['id']);
@@ -69,9 +70,33 @@ Page({
       },
     });
   },
+  updateLogin: function () {
+    const userId = wx.getStorageSync('userId') || null;
+    const token = wx.getStorageSync('token') || null;
+
+    if (!userId) {
+      return;
+    }
+    wx.request({
+      url: `${app.globalData['root_url']}user/list/${userId}`,
+      header: {
+        Authorization: 'Bearer ' + token,
+      },
+      success: (res) => {
+        const { code, data: user } = res.data;
+        if (code === 0) {
+          wx.setStorageSync('intergal', user['integral']);
+          wx.setStorageSync('paid_balance', user['paid_balance']);
+          this.setData({
+            intergal: user['integral'],
+            paid_balance: user['paid_balance'],
+          });
+        }
+      },
+    });
+  },
   // 获取微信用户信息
   getUserInfo: function (e) {
-    console.log(e);
     app.globalData.userInfo = e.detail.userInfo;
     this.setData({
       userInfo: e.detail.userInfo,
@@ -89,6 +114,9 @@ Page({
         hasUserInfo: true,
       });
     }
+    this.setData({
+      hotelPhone: app.globalData['hotelPhone'],
+    });
   },
   onShow: function () {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -96,5 +124,6 @@ Page({
         selected: 2,
       });
     }
+    this.updateLogin();
   },
 });

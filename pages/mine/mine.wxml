@@ -59,8 +59,8 @@
   </view>
   <view class="bottom-tips">
     <view class="email">
-      <text>意见反馈邮箱：</text>
-      <text>abc@gmail.com</text>
+      <text>联系方式：</text>
+      <text>{{hotelPhone}}</text>
     </view>
   </view>
 </view>
