@@ -7,6 +7,7 @@ Page({
     selected: 0,
     balance: 357,
     isAgree: true,
+    becameVip: false,
   },
 
   changeAgree: function () {
@@ -25,6 +26,25 @@ Page({
     const balance = wx.getStorageSync('paid_balance') || 0;
     this.setData({
       balance,
+    });
+  },
+
+  toVip: function (id, token) {
+    wx.request({
+      url: `${app.globalData['root_url']}user/tovip/${id}`,
+      header: {
+        Authorization: 'Bearer ' + token,
+      },
+      method: 'PUT',
+      success: (res) => {
+        const { code, data, message } = res.data;
+        if (code !== 0) {
+          wx.showModal({
+            title: '会员注册失败',
+            content: message,
+          });
+        }
+      },
     });
   },
 
@@ -72,6 +92,7 @@ Page({
                   const { code, message: integralMessage } = res.data;
                   if (code === 0) {
                     wx.navigateBack();
+                    this.toVip(userId, token);
                   } else {
                     wx.showModal({
                       title: '积分添加失败',
@@ -104,7 +125,12 @@ Page({
     });
   },
 
-  onLoad() {
+  onLoad({ becamevip }) {
+    if (becamevip) {
+      this.setData({
+        becameVip: true,
+      });
+    }
     this.getBalance();
     this.setData({
       select_money: [

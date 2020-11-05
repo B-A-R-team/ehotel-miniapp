@@ -64,6 +64,7 @@ Page({
         const { code, data } = res.data;
         // 设置酒店电话号
         app.globalData.hotelPhone = data.phone;
+        app.globalData.hotelName = data.title;
         const localtion = {
           name: data.address + data.title,
           title: data.title,

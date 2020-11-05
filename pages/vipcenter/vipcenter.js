@@ -1,4 +1,6 @@
 // pages/vipcenter/vipcenter.js
+const app = getApp();
+
 Page({
   /**
    * 页面的初始数据
@@ -6,6 +8,32 @@ Page({
   data: {
     vip_info: {},
     powerList: [],
+    hotelName: '',
+  },
+
+  getUser() {
+    const userId = wx.getStorageSync('userId') || null;
+    const token = wx.getStorageSync('token') || null;
+
+    wx.request({
+      url: `${app.globalData['root_url']}user/list/${userId}`,
+      header: {
+        Authorization: 'Bearer ' + token,
+      },
+      success: (res) => {
+        const { code, data } = res.data;
+        if (code === 0) {
+          this.setData({
+            vip_info: {
+              name: data['nickname'],
+              time: '2020.09.09',
+              isVip: data['is_vip'],
+              vipId: data['id'].toString().padStart(12, 0),
+            },
+          });
+        }
+      },
+    });
   },
 
   /**
@@ -13,12 +41,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      vip_info: {
-        name: '200OK',
-        time: '2020.09.09',
-        isVip: true,
-        vipId: '0001 0001 1234',
-      },
+      hotelName: app.globalData.hotelName,
+    });
+    this.setData({
       powerList: [
         {
           label: '优惠券',
@@ -48,7 +73,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    this.getUser();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -7,7 +7,7 @@ Component({
     name: {
       type: String,
     },
-    time: {
+    hotelName: {
       type: String,
     },
     isVip: {
@@ -26,5 +26,11 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    toVip: function () {
+      wx.navigateTo({
+        url: '/pages/recharge/recharge?becamevip=true',
+      });
+    },
+  },
 });
