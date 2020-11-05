@@ -3,8 +3,9 @@
   <block wx:if="{{activeList.length !== 0}}">
     <block wx:for="{{activeList}}" wx:key="index">
       <active-card
-        imageUrl="{{item['imageUrl']}}"
-        title="{{item['title']}}"
+        activeId="{{item['id']}}"
+        imageUrl="{{item['img_url']}}"
+        title="{{item['topic']}}"
         status="{{item['status']}}"
         time="{{item['time']}}"
       ></active-card>

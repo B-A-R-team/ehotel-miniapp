@@ -3,7 +3,7 @@
   <view class="card-content">
     <view>
       <view class="vip-name">{{name}}</view>
-      <view class="lose-time">{{time}}到期</view>
+      <view class="lose-time">{{hotelName}} VIP卡</view>
     </view>
     <view class="vip-btn-wrapper">
       <button
@@ -11,7 +11,8 @@
         hover-class="vip-btn-active"
         plain="true"
         size="mini"
-      >{{isVip ? '立即续费' : '成为会员'}}</button>
+        bind:tap="toVip"
+      >{{isVip ? 'VIP' : '成为会员'}}</button>
     </view>
   </view>
   <view class="vip-id">NO. {{vipId}}</view>

@@ -4,18 +4,13 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    title: {
-      type: String,
-    },
-    time: {
-      type: String,
-    },
-    num: {
-      type: Number,
-    },
-    unit: {
-      type: String,
-    },
+    label: { type: String },
+    isFullDown: { type: Boolean },
+    limitPrice: { type: Number },
+    reducePrice: { type: Number },
+    startTime: { type: String },
+    endTime: { type: String },
+    remarks: { type: String },
   },
 
   /**

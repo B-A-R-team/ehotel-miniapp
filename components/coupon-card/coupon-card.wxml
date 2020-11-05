@@ -1,13 +1,16 @@
 <!--components/coupon-card/coupon-card.wxml-->
 <view class="coupon-card-container">
   <view class="coupon-left">
-    <view class="title">{{title}}</view>
-    <view class="time">有效期至{{time}}</view>
+    <view class="title">
+      {{label}}
+      <text class="limit">满{{limitPrice}}元可使用</text>
+    </view>
+    <view class="time">有效期至{{endTime}}</view>
   </view>
   <view class="coupon-right">
     <view class="discount">
-      <text class="num">{{num}}</text>
-      <text class="unit">{{unit}}</text>
+      <text class="num">{{reducePrice}}</text>
+      <text class="unit">元</text>
     </view>
   </view>
 </view>

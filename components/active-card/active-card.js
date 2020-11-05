@@ -16,6 +16,9 @@ Component({
     time: {
       type: String,
     },
+    activeId: {
+      type: Number,
+    },
   },
 
   /**
@@ -26,5 +29,17 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    toDetail: function (e) {
+      console.log(e.currentTarget.dataset.id);
+    },
+  },
+  lifetimes: {
+    attached: function () {
+      // 在组件实例进入页面节点树时执行
+    },
+    detached: () => {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  },
 });

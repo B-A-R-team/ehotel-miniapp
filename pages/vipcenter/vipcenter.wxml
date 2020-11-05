@@ -2,7 +2,7 @@
 <view class="vip-container">
   <vip-card
     name="{{vip_info['name']}}"
-    time="{{vip_info['time']}}"
+    hotelName="{{hotelName}}"
     isVip="{{vip_info['isVip']}}"
     vipId="{{vip_info['vipId']}}"
   ></vip-card>
