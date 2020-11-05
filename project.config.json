@@ -7,7 +7,6 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
@@ -17,19 +16,21 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"preloadBackgroundData": false,
+		"compileHotReLoad": false,
 		"useIsolateContext": true,
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
-	"appid": "wx3ba05dd7c58bfca3",
+	"libVersion": "2.12.1",
+	"appid": "wx29813b3365938a41",
 	"projectname": "ehotelminiapp",
 	"debugOptions": {
 		"hidedInDevtools": []

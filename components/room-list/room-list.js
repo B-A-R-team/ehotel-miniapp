@@ -31,19 +31,19 @@ Component({
     getRooms: function () {
       const { hotel_id } = app.globalData;
       wx.request({
-        url: `${app.globalData.root_url}hotels/getrooms`,
+        url: `${app.globalData.root_url}room/list`,
         data: { id: hotel_id },
         success: (res) => {
           const { code, data } = res.data;
           data.forEach((item) => {
-            item['img_url'] = app.globalData['root_url'] + item['img_url'][0];
+            item['img_url'] =
+              app.globalData['root_url'] + JSON.parse(item['img_url'])[0];
           });
           if (code === 0) {
             this.setData({
               rooms: data,
             });
           }
-          console.log(data);
         },
       });
     },

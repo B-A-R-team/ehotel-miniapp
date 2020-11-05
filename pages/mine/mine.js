@@ -33,7 +33,7 @@ Page({
         console.log(res);
         const { code } = res;
         wx.request({
-          url: `${app.globalData.root_url}users/loginforwx`,
+          url: `${app.globalData.root_url}user/loginforwx`,
           method: 'POST',
           data: {
             code,
@@ -44,7 +44,7 @@ Page({
             const { user, token } = res.data;
 
             try {
-              wx.setStorageSync('userId', user['_id']);
+              wx.setStorageSync('userId', user['id']);
               wx.setStorageSync('nickname', user['nickname']);
               wx.setStorageSync('avatar_url', user['avatar_url']);
               wx.setStorageSync('intergal', user['integral']);
@@ -54,7 +54,7 @@ Page({
               console.log(e);
             }
             app.globalData['userInfo'] = {
-              userId: user['_id'],
+              userId: user['id'],
               nickName: user['nickname'],
               avatarUrl: user['avatar_url'],
             };

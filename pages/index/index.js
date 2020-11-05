@@ -59,10 +59,7 @@ Page({
     const { hotel_id } = app.globalData;
     console.log(hotel_id);
     wx.request({
-      url: `${app.globalData.root_url}hotels/clientget`,
-      data: {
-        id: hotel_id,
-      },
+      url: `${app.globalData.root_url}hotel/list/${hotel_id}`,
       success: (res) => {
         const { code, data } = res.data;
         const localtion = {
@@ -74,7 +71,8 @@ Page({
         if (code === 0) {
           let swiperList = [];
           data.swiperList.forEach((item) => {
-            swiperList.push(app.globalData['root_url'] + item);
+            const url = app.globalData['root_url'] + item.replace(/\\/g, '/');
+            swiperList.push(url);
           });
 
           this.setData({

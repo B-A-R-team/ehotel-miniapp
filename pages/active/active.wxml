@@ -1,11 +1,16 @@
 <!--pages/active/active.wxml-->
 <view class="active-container">
-  <block wx:for="{{activeList}}" wx:key="index">
-    <active-card
-      imageUrl="{{item['imageUrl']}}"
-      title="{{item['title']}}"
-      status="{{item['status']}}"
-      time="{{item['time']}}"
-    ></active-card>
+  <block wx:if="{{activeList.length !== 0}}">
+    <block wx:for="{{activeList}}" wx:key="index">
+      <active-card
+        imageUrl="{{item['imageUrl']}}"
+        title="{{item['title']}}"
+        status="{{item['status']}}"
+        time="{{item['time']}}"
+      ></active-card>
+    </block>
+  </block>
+  <block wx:else>
+    <div class="no-resource">暂无数据</div>
   </block>
 </view>
