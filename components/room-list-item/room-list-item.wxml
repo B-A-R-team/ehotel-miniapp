@@ -5,15 +5,14 @@
   </view>
   <view class="details">
     <view class="title">{{title}}</view>
-    <view class="remarks">{{remarks}}</view>
     <view class="price-wrapper">
       <text class="new-price">￥{{newPrice}}</text>
       <text class="old-price" wx:if="{{newPrice !== oldPrice}}">{{oldPrice}}</text>
       <text class="old-price" wx:else></text>
       <text
         class="last-count {{lastCount === 0 ? 'disabled' : ''}}"
-        bind:tap="toOrder"
-      >剩余{{lastCount}}间</text>
+        catchtap="toOrder"
+      >剩余{{lastCount}}间</text> 
     </view>
   </view>
 </view>

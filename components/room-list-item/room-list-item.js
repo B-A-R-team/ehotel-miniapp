@@ -15,10 +15,7 @@ Component({
       type: String,
       value: '未设定',
     },
-    remarks: {
-      type: String,
-      value: '未设定',
-    },
+
     newPrice: {
       type: Number,
       value: 50,
@@ -52,6 +49,7 @@ Component({
    */
   methods: {
     toOrder() {
+      console.log(this.data.lastCount)
       if (this.data.lastCount === 0) {
         return wx.showModal({
           title: '提示',
@@ -70,9 +68,14 @@ Component({
       wx.navigateTo({
         url: `/pages/order-details/order-details?roomId=${roomId}&inTime=${inTime}&outTime=${outTime}&diffDay=${diffDay}&title=${title}&price=${newPrice}&empty_count=${lastCount}`,
       });
+
+
     },
     toDetail() {
-      const { roomId } = this.properties;
+      const {
+        roomId
+      } = this.properties;
+      console.log(roomId)
       wx.navigateTo({
         url: `/pages/room-detail/room-detail?roomid=${roomId}`,
       });

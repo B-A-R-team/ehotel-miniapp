@@ -19,7 +19,7 @@
     <view class="infos">
       <view>
         <text class="info-label">房间面积</text>
-        <text>{{room['room_info']['area']}}</text>
+        <text>{{room['area']}}</text>
       </view>
       <view>
         <text class="info-label">入住人数</text>
@@ -39,7 +39,7 @@
       </view>
       <view>
         <text class="info-label">房间楼层</text>
-        <text>{{room['room_info']['floor']}}</text>
+        <text>{{room['floor']}}</text>
       </view>
     </view>
   </view>

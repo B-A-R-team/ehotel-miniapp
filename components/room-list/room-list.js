@@ -28,21 +28,51 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    getRooms: function () {
-      const { hotel_id } = app.globalData;
+    getRooms: function() {
+      const {
+        hotel_id
+      } = app.globalData;
       wx.request({
-        url: `${app.globalData.root_url}room/list`,
-        data: { id: hotel_id },
+        url: `${app.globalData.root_url}room/type/list`,
+        data: {
+          id: hotel_id
+        },
         success: (res) => {
-          const { code, data } = res.data;
-          data.forEach((item) => {
-            item['img_url'] =
-              app.globalData['root_url'] + JSON.parse(item['img_url'])[0];
-          });
+          const {
+            code,
+            data
+          } = res.data;
           if (code === 0) {
             this.setData({
               rooms: data,
             });
+            data.forEach((item,index) => {
+              wx.request({
+                url: `${app.globalData.root_url}room/getByType`,
+                data: {
+                  typeId: item.id
+                },
+                success: (res) => {
+                  const {
+                    data,
+                    code
+                  } = res.data
+                  if (code === 0) {
+                    let rooms = this.data.rooms
+                    let lastCount = data.rooms.filter((item) => item.is_used === false).length
+                    rooms[index].new_price = data.rooms[0].new_price
+                    rooms[index].old_price = data.rooms[0].old_price
+                    rooms[index].lastCount = lastCount
+                    console.log(JSON.parse(data.rooms[0]['img_url'] || '[]') )
+                    rooms[index].img_url = app.globalData['root_url'] + JSON.parse(data.rooms[0]['img_url'] || '[]')[0]
+                    this.setData({
+                      rooms
+                    })
+                  }
+                }
+              })
+            })
+
           }
         },
       });
@@ -50,7 +80,7 @@ Component({
   },
 
   lifetimes: {
-    attached: function () {
+    attached: function() {
       // 在组件实例进入页面节点树时执行
       this.getRooms();
     },
