@@ -57,7 +57,7 @@ Component({
                     data,
                     code
                   } = res.data
-                  if (code === 0) {
+                  if (code === 0 && data.rooms.length > 0) {
                     let rooms = this.data.rooms
                     let lastCount = data.rooms.filter((item) => item.is_used === false).length
                     rooms[index].new_price = data.rooms[0].new_price

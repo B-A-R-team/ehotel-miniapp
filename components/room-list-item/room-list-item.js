@@ -49,8 +49,13 @@ Component({
    */
   methods: {
     toOrder() {
-      console.log(this.data.lastCount)
-      if (this.data.lastCount === 0) {
+      if (this.data.newPrice <= 0) {
+        return wx.showModal({
+          title: '提示',
+          content: '该房型中暂无房间',
+        });
+      }
+      if (this.data.lastCount <= 0) {
         return wx.showModal({
           title: '提示',
           content: '该类房间已无空房',
@@ -72,13 +77,21 @@ Component({
 
     },
     toDetail() {
-      const {
-        roomId
-      } = this.properties;
-      console.log(roomId)
-      wx.navigateTo({
-        url: `/pages/room-detail/room-detail?roomid=${roomId}`,
-      });
+      if (this.properties.newPrice) {
+        const {
+          roomId
+        } = this.properties;
+        console.log(roomId)
+        wx.navigateTo({
+          url: `/pages/room-detail/room-detail?roomid=${roomId}`,
+        });
+      } else {
+        wx.showToast({
+          title: '该房型暂无房间',
+          icon:'none'
+        })
+      }
+
     },
   },
 });

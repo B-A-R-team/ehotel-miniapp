@@ -35,7 +35,7 @@ Page({
         } = res.data;
         console.log(res)
         if (code === 0) {
-          if (data.rooms[0]) {
+          if (data.rooms.length>0 && data.rooms[0] ) {
             const computer_info = JSON.parse(data.rooms[0].computer_info || '{}')
             const room_info = JSON.parse(data.rooms[0].room_info || '{}')
             const img_url = JSON.parse(data.rooms[0].img_url || '[]')
@@ -50,7 +50,7 @@ Page({
                 floor
               }
             })
-          }
+          } 
         }
       },
     });
