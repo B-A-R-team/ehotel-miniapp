@@ -40,6 +40,10 @@ Page({
           const { hotel, room, user, ...rest } = item;
           list.push({
             ...item,
+            img_url: JSON.parse(item['room']['img_url'])[0]
+              ? app.globalData['root_url'] +
+                JSON.parse(item['room']['img_url'])[0].replace(/\\/g, '/')
+              : '/assets/default_room.jpg',
             title: item['room']['title'],
             member: JSON.parse(item['member_message'])['name'],
             time: util.formatTime(new Date(item['create_at']), true),

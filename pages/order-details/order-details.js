@@ -122,42 +122,46 @@ Page({
 
     const { hotel_id, userInfo } = app.globalData;
 
-    if (!this.data.useBalance) {
-      const recordInfo = {
-        roomId,
-        total_price,
-        room_count,
-        member,
-        time,
-        coupon: coupons[couponIdx],
-        remarks,
-        hotel_id,
-        userId: userInfo['userId'],
-      };
-      wx.showModal({
-        title: '微信支付',
-        content: `${recordInfo.total_price}`,
-        success: () => {
-          wx.request({
-            url: `${app.globalData.root_url}user/decrease`,
-            method: 'PUT',
-            header: {
-              Authorization: 'Bearer ' + token,
-            },
-            data: {
-              id: userInfo['userId'],
-              money: Number(total_price),
-            },
-            success: (res) => {
-              const { code } = res.data;
-              if (code === 0) {
-                this.sendRecord(recordInfo);
-              }
-            },
-          });
-        },
-      });
-    }
+    this.rollRoom(roomId, () => {
+      if (!this.data.useBalance) {
+        const recordInfo = {
+          roomId: this.data.roomId,
+          total_price,
+          room_count,
+          member,
+          time,
+          coupon: coupons[couponIdx],
+          remarks,
+          hotel_id,
+          userId: userInfo['userId'],
+        };
+        wx.showModal({
+          title: '微信支付',
+          content: `${recordInfo.total_price}`,
+          success: () => {
+            this.useRoom(recordInfo['roomId'], () => {
+              wx.request({
+                url: `${app.globalData.root_url}user/decrease`,
+                method: 'PUT',
+                header: {
+                  Authorization: 'Bearer ' + token,
+                },
+                data: {
+                  id: userInfo['userId'],
+                  money: Number(total_price),
+                },
+                success: (res) => {
+                  const { code } = res.data;
+                  if (code === 0) {
+                    this.sendRecord(recordInfo);
+                  }
+                },
+              });
+            });
+          },
+        });
+      }
+    });
   },
   // 计算总价
   getTotlePrice: function () {
@@ -212,6 +216,53 @@ Page({
           this.setData({
             coupons: data,
           });
+        }
+      },
+    });
+  },
+
+  // 获取房间
+  rollRoom: function (typeId, callback) {
+    wx.request({
+      url: `${app.globalData.root_url}room/getByType`,
+      method: 'GET',
+      data: {
+        typeId,
+      },
+      success: (res) => {
+        const { code, data } = res.data;
+        console.log(data);
+        if (code === 0) {
+          const room = data['rooms'].filter(
+            (item) => item['is_used'] === false
+          )[0];
+          this.setData({
+            roomId: room['id'],
+          });
+          callback();
+        }
+      },
+    });
+  },
+
+  useRoom: function (roomId, callback) {
+    const token = wx.getStorageSync('token') || null;
+    wx.request({
+      url: `${app.globalData.root_url}room/update/${roomId}`,
+      method: 'PUT',
+      header: {
+        Authorization: 'Bearer ' + token,
+      },
+      data: { is_used: true },
+      success: (res) => {
+        const { code } = res.data;
+        if (code !== 0) {
+          return wx.showModal({
+            title: '下单失败',
+            content: '房间获取出错',
+          });
+        } else {
+          callback();
         }
       },
     });

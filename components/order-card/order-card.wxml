@@ -7,7 +7,7 @@
     >{{status === 'waiting' ? '待入住': status === 'finish'?'已完成':'待付款'}}</view>
   </view>
   <view class="remarks">
-    <image src="/assets/default_room.jpg" />
+    <image src="{{imgUrl}}" />
     <view>
       <view class="time">{{time}}下单</view>
       <view class="desc" style="color: #585858;">由 {{member}} 登记入住</view>

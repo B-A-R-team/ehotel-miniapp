@@ -10,5 +10,6 @@
     time="{{item.time}}"
     member="{{item.member}}"
     discount="{{item.discount}}"
+    imgUrl="{{item.img_url}}"
   ></order-card>
 </view>

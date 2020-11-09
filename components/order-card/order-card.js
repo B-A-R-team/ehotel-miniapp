@@ -23,6 +23,10 @@ Component({
       type: String,
       default: '无',
     },
+    imgUrl: {
+      type: String,
+      default: '/assets/default_room.jpg',
+    },
   },
 
   /**
