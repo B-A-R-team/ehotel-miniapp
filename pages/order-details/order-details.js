@@ -113,6 +113,13 @@ Page({
       remarks,
     } = this.data;
 
+    if (!member['name'] || !member['phone']) {
+      return wx.showModal({
+        title: '提示',
+        content: '请输入姓名和电话号',
+      });
+    }
+
     const { hotel_id, userInfo } = app.globalData;
 
     if (!this.data.useBalance) {
