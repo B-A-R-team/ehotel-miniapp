@@ -7,6 +7,7 @@ Page({
    */
   data: {
     room: {},
+    BASE_URL:''
   },
 
   /**
@@ -16,6 +17,7 @@ Page({
     const {
       roomid
     } = options;
+    this.setData({ BASE_URL: app.globalData.root_url})
     this.getRoom(roomid);
   },
 
@@ -38,7 +40,10 @@ Page({
           if (data.rooms.length>0 && data.rooms[0] ) {
             const computer_info = JSON.parse(data.rooms[0].computer_info || '{}')
             const room_info = JSON.parse(data.rooms[0].room_info || '{}')
-            const img_url = JSON.parse(data.rooms[0].img_url || '[]')
+            let img_url =  JSON.parse(data.rooms[0].img_url || '[]')
+            img_url = img_url.map((item) => {
+              return item.replace(/\\/g, '/')
+            })
             const area = data.rooms[0].type.area
             const floor = data.rooms[0].type.floor[0]
             this.setData({
