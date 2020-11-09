@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    roomId: '',
+    roomId: 0,
     inTime: '',
     outTime: '',
     diffDay: 0,
@@ -18,8 +18,8 @@ Page({
     room_count: 1,
     time: '08:00',
     total_price: 0,
-    intergal: 1024,
-    useIntergal: false,
+    balance: 0,
+    useBalance: false,
     coupons: [12.5, 2, 6, 30.4],
     member: {
       name: '',
@@ -41,24 +41,6 @@ Page({
       time: e.detail.value,
     });
   },
-  // 添加房间数
-  increaseRoomCount: function () {
-    this.setData({
-      room_count: this.data.room_count + 1,
-    });
-    this.getTotlePrice();
-  },
-  // 减少房间数
-  decreaseRoomCount: function () {
-    const { room_count } = this.data;
-    if (room_count <= 1) {
-      return;
-    }
-    this.setData({
-      room_count: room_count - 1,
-    });
-    this.getTotlePrice();
-  },
   // 选择优惠券
   bindCouponChange: function (e) {
     if (e.detail.value < 0) return;
@@ -69,10 +51,10 @@ Page({
   },
   // 更改消费方式
   useVipChange: function () {
-    const { intergal, total_price, useIntergal } = this.data;
-    if (intergal < total_price) {
+    const { balance, total_price, useBalance } = this.data;
+    if (balance < total_price) {
       this.setData({
-        useIntergal,
+        useBalance,
       });
       return wx.showModal({
         title: '提示',
@@ -81,42 +63,30 @@ Page({
       });
     }
     this.setData({
-      useIntergal: !useIntergal,
+      useBalance: !useBalance,
     });
   },
 
   // 发送订单数据
   sendRecord: function (record) {
     console.log(record);
-    const {
-      roomId,
-      total_price,
-      room_count,
-      member,
-      time,
-      coupon,
-      remarks,
-      hotel_id,
-      userId,
-    } = record;
+    const { roomId, member, time, coupon, remarks, hotel_id, userId } = record;
     const token = wx.getStorageSync('token') || null;
 
     wx.request({
-      url: `${app.globalData.root_url}records/create`,
+      url: `${app.globalData.root_url}record/create`,
       method: 'POST',
       header: {
-        Authorization: token.replace('Bear ', ''),
+        Authorization: 'Bearer ' + token,
       },
       data: {
         hotel_id,
-        room_id: roomId,
-        guest_id: userId,
-        member_message: member,
+        room_id: Number(roomId),
+        user_id: userId,
+        member_message: JSON.stringify(member),
         remarks: `预计${time}到达 ${remarks}`,
-        status: '待入住',
-        coupon,
-        price: total_price,
-        room_count,
+        status: 'waiting',
+        coupon: coupon ? coupon : 0,
       },
       success: (res) => {
         const { code, data } = res.data;
@@ -131,6 +101,7 @@ Page({
 
   // 支付
   doSell: function () {
+    const token = wx.getStorageSync('token') || null;
     const {
       roomId,
       total_price,
@@ -144,7 +115,7 @@ Page({
 
     const { hotel_id, userInfo } = app.globalData;
 
-    if (!this.data.useIntergal) {
+    if (!this.data.useBalance) {
       const recordInfo = {
         roomId,
         total_price,
@@ -160,7 +131,23 @@ Page({
         title: '微信支付',
         content: `${recordInfo.total_price}`,
         success: () => {
-          this.sendRecord(recordInfo);
+          wx.request({
+            url: `${app.globalData.root_url}user/decrease`,
+            method: 'PUT',
+            header: {
+              Authorization: 'Bearer ' + token,
+            },
+            data: {
+              id: userInfo['userId'],
+              money: Number(total_price),
+            },
+            success: (res) => {
+              const { code } = res.data;
+              if (code === 0) {
+                this.sendRecord(recordInfo);
+              }
+            },
+          });
         },
       });
     }
@@ -206,10 +193,29 @@ Page({
     });
   },
 
+  // 获取优惠券
+  getCoupons: function () {
+    const { userId } = app.globalData.userInfo;
+    wx.request({
+      url: `${app.globalData.root_url}coupon/getby/user/${userId}`,
+      method: 'GET',
+      success: (res) => {
+        const { code, data } = res.data;
+        if (code === 0) {
+          this.setData({
+            coupons: data,
+          });
+        }
+      },
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCoupons();
+
     const {
       roomId,
       inTime,
@@ -232,6 +238,7 @@ Page({
       outTime,
       diffDay: parseInt(diffDay),
       room,
+      balance: wx.getStorageSync('paid_balance'),
     });
     this.getTotlePrice();
   },

@@ -41,28 +41,29 @@ Component({
           break;
         case 1:
           tempArr = list.filter((item) => {
-            return item['status'] === '待付款';
+            return item['status'] === 'unpaid';
           });
           break;
         case 2:
           tempArr = list.filter((item) => {
-            return item['status'] === '待入住';
+            return item['status'] === 'waiting';
           });
           break;
         case 3:
           tempArr = list.filter((item) => {
-            return item['status'] === '已完成';
+            return item['status'] === 'finish';
           });
           break;
       }
+
+      tempArr.reverse();
 
       this.setData({
         orderList: tempArr,
       });
     },
   },
-  ready() {
-  },
+  ready() {},
   attached() {
     this.setData({
       userId: app.globalData['hotel_id'],

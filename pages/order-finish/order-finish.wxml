@@ -5,7 +5,7 @@
     <text>订单信息</text>
     <view>
       <view class="label">订单状态</view>
-      <view>{{orderInfo['status']}}</view>
+      <view>{{orderInfo['status'] === 'waiting' ? '待入住' : orderInfo['status'] === 'finish' ? '已完成' : '未支付'}}</view>
     </view>
     <view>
       <view class="label">订单号</view>

@@ -2,7 +2,9 @@
 <view class="ordercard-container">
   <view class="title">
     <view>{{title}}</view>
-    <view class="status {{status === '待入住' ? 'ing' : status === '待付款' ? 'nopay' : ''}}">{{status}}</view>
+    <view
+      class="status {{status === 'waiting' ? 'ing' : status === 'unpaid' ? 'nopay' : ''}}"
+    >{{status === 'waiting' ? '待入住': status === 'finish'?'已完成':'待付款'}}</view>
   </view>
   <view class="remarks">
     <image src="/assets/default_room.jpg" />

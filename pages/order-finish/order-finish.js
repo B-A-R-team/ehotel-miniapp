@@ -25,28 +25,28 @@ Page({
   getOrderInfo: function (id) {
     const token = wx.getStorageSync('token') || null;
     wx.request({
-      url: `${app.globalData.root_url}records/getbyId`,
+      url: `${app.globalData.root_url}record/getByRecordId`,
       header: {
-        Authorization: token.replace('Bear ', ''),
+        Authorization: 'Bearer ' + token,
       },
       data: {
-        id,
+        recordId: id,
       },
       success: (res) => {
         const { code, data } = res.data;
         if (code === 0) {
+          console.log(data);
           this.setData({
             orderInfo: {
               status: data['status'],
-              order_id: id,
-              time: util.formatTime(new Date(data['time'])),
-              room_title: data['title'],
+              order_id: id.toString().padStart(12, 0),
+              time: util.formatTime(new Date(data['create_at'])),
+              room_title: data['room']['title'],
               room_count: 1,
-              memeber: JSON.parse(data['member'])['name'],
-              phone: JSON.parse(data['member'])['phone'],
+              memeber: JSON.parse(data['member_message'])['name'], phone: JSON.parse(data['member_message'])['phone'],
               payment_style: '微信支付',
-              price: data['price'] + data['discount'],
-              coupon: data['discount'],
+              price: data['room']['new_price'],
+              coupon: data['coupon'],
               totel_price: data['price'],
             },
           });

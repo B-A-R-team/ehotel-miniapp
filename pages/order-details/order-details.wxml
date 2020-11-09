@@ -15,9 +15,9 @@
     <view class="room-count-wrapper">
       <view>房间数</view>
       <view>
-        <button bindtap="decreaseRoomCount" disabled="{{true}}">-</button>
+        <button disabled="{{true}}">-</button>
         <text>{{room_count}}</text>
-        <button bindtap="increaseRoomCount" disabled="{{true}}">+</button>
+        <button disabled="{{true}}">+</button>
       </view>
     </view>
     <view class="member">
@@ -44,16 +44,17 @@
     <view class="coupon">
       <view>优惠券</view>
       <view>
-        <picker bindchange="bindCouponChange" value="{{couponIdx}}" range="{{coupons}}">
+        <picker bindchange="bindCouponChange" value="{{couponIdx}}" range="{{coupons}}" disabled="{{coupons.length === 0}}">
           <view class="picker" wx:if="{{couponIdx > -1}}">-￥{{coupons[couponIdx]}}</view>
+          <view wx:elif="{{coupons.length === 0}}">无优惠券</view>
           <view class="picker" wx:else>未选择 ＞</view>
         </picker>
       </view>
     </view>
     <view class="useVip">
       <view>使用余额支付</view>
-      <view class="intergal">（剩余￥{{intergal}}）</view>
-      <switch bindchange="useVipChange" color="#ffcc00" checked="{{useIntergal}}" />
+      <view class="intergal">（剩余￥{{balance}}）</view>
+      <switch bindchange="useVipChange" color="#ffcc00" checked="{{useBalance}}" />
     </view>
   </view>
   <!-- 备注 -->
@@ -75,9 +76,9 @@
   <view class="bottom-button">
     <view>￥{{total_price}}</view>
     <view
-      class="{{useIntergal?'sell-btn':''}}"
+      class="{{useBalance?'sell-btn':''}}"
       hover-class="sell-btn-hover"
       bindtap="doSell"
-    >{{useIntergal?'余额':''}}支付</view>
+    >{{useBalance?'余额':''}}支付</view>
   </view>
 </view>

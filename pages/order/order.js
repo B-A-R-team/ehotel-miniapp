@@ -35,13 +35,14 @@ Page({
       },
       success: (res) => {
         const { code, data } = res.data;
-        console.log(data)
         let list = [];
         data.forEach((item) => {
+          const { hotel, room, user, ...rest } = item;
           list.push({
             ...item,
-            member: JSON.parse(item['member'])['name'],
-            time: util.formatTime(new Date(item['time']), true),
+            title: item['room']['title'],
+            member: JSON.parse(item['member_message'])['name'],
+            time: util.formatTime(new Date(item['create_at']), true),
           });
         });
         if (code === 0) {
