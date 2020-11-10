@@ -64,7 +64,7 @@ Component({
                     rooms[index].old_price = data.rooms[0].old_price
                     rooms[index].lastCount = lastCount
                     let img_url =  JSON.parse(data.rooms[0]['img_url'] || '[]')[0]
-                    img_url = img_url.replace(/\\/g,'/')
+                    img_url && (img_url = img_url.replace(/\\/g, '/'))
                     rooms[index].img_url = app.globalData['root_url'] +  img_url
                     this.setData({
                       rooms
