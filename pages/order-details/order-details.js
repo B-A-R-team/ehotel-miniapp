@@ -69,7 +69,6 @@ Page({
 
   // 发送订单数据
   sendRecord: function (record) {
-    console.log(record);
     const { roomId, member, time, coupon, remarks, hotel_id, userId } = record;
     const token = wx.getStorageSync('token') || null;
 
@@ -101,6 +100,7 @@ Page({
 
   // 支付
   doSell: function () {
+    console.log(`doSell`);
     const token = wx.getStorageSync('token') || null;
     const {
       roomId,
@@ -121,43 +121,61 @@ Page({
     }
 
     const { hotel_id, userInfo } = app.globalData;
-
     this.rollRoom(roomId, () => {
+      const recordInfo = {
+        roomId: this.data.roomId,
+        total_price,
+        room_count,
+        member,
+        time,
+        coupon: coupons[couponIdx],
+        remarks,
+        hotel_id,
+        userId: userInfo['userId'],
+      };
+
       if (!this.data.useBalance) {
-        const recordInfo = {
-          roomId: this.data.roomId,
-          total_price,
-          room_count,
-          member,
-          time,
-          coupon: coupons[couponIdx],
-          remarks,
-          hotel_id,
-          userId: userInfo['userId'],
-        };
         wx.showModal({
           title: '微信支付',
           content: `${recordInfo.total_price}`,
-          success: () => {
-            this.useRoom(recordInfo['roomId'], () => {
-              wx.request({
-                url: `${app.globalData.root_url}user/decrease`,
-                method: 'PUT',
-                header: {
-                  Authorization: 'Bearer ' + token,
-                },
-                data: {
-                  id: userInfo['userId'],
-                  money: Number(total_price),
-                },
-                success: (res) => {
-                  const { code } = res.data;
-                  if (code === 0) {
-                    this.sendRecord(recordInfo);
-                  }
-                },
+          success: (res) => {
+            if (res.confirm) {
+              this.useRoom(recordInfo['roomId'], () => {
+                this.sendRecord(recordInfo);
               });
-            });
+            } else {
+              return;
+            }
+          },
+        });
+      } else {
+        wx.showModal({
+          title: '余额支付',
+          content: `${recordInfo.total_price}`,
+          success: (res) => {
+            if (res.confirm) {
+              this.useRoom(recordInfo['roomId'], () => {
+                wx.request({
+                  url: `${app.globalData.root_url}user/decrease`,
+                  method: 'PUT',
+                  header: {
+                    Authorization: 'Bearer ' + token,
+                  },
+                  data: {
+                    id: userInfo['userId'],
+                    money: Number(total_price),
+                  },
+                  success: (res) => {
+                    const { code } = res.data;
+                    if (code === 0) {
+                      this.sendRecord(recordInfo);
+                    }
+                  },
+                });
+              });
+            } else {
+              return;
+            }
           },
         });
       }

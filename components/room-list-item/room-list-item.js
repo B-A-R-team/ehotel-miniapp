@@ -49,6 +49,15 @@ Component({
    */
   methods: {
     toOrder() {
+      const userId = wx.getStorageSync('userId') || null;
+
+      if (!userId) {
+        return wx.showModal({
+          title: '提示',
+          content: '请先登录',
+        });
+      }
+
       if (this.data.newPrice <= 0) {
         return wx.showModal({
           title: '提示',
@@ -73,25 +82,20 @@ Component({
       wx.redirectTo({
         url: `/pages/order-details/order-details?roomId=${roomId}&inTime=${inTime}&outTime=${outTime}&diffDay=${diffDay}&title=${title}&price=${newPrice}&empty_count=${lastCount}`,
       });
-
-
     },
     toDetail() {
       if (this.properties.newPrice) {
-        const {
-          roomId
-        } = this.properties;
-        console.log(roomId)
+        const { roomId } = this.properties;
+        console.log(roomId);
         wx.redirectTo({
           url: `/pages/room-detail/room-detail?roomid=${roomId}`,
         });
       } else {
         wx.showToast({
           title: '该房型暂无房间',
-          icon:'none'
-        })
+          icon: 'none',
+        });
       }
-
     },
   },
 });
