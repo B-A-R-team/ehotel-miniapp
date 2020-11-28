@@ -97,7 +97,7 @@ Page({
 
   goHotel() {
     let plugin = requirePlugin('routePlan');
-    let key = 'JRKBZ-R3AK5-UQDIL-QNJIP-CA6MO-ALF2N'; //使用在腾讯位置服务申请的key
+    let key = 'BHBBZ-FKX66-URPSP-ECD6C-RERDH-SHFV4'; //使用在腾讯位置服务申请的key
     let referer = 'BAR电竞酒店平台'; //调用插件的app的名称
     const { name, latitude, longitude } = this.data.hotel_location_info;
     // 终点
@@ -106,6 +106,7 @@ Page({
       latitude,
       longitude,
     });
+    console.log(endPoint)
     wx.navigateTo({
       url:
         'plugin://routePlan/index?key=' +

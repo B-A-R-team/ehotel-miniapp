@@ -4,15 +4,20 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    intergal: -1,
-    paid_balance: -1,
+    intergal: 0,
+    paid_balance: 0,
     hotelPhone: '',
   },
   // 去充值
   toRecharge: function () {
-    wx.navigateTo({
-      url: '/pages/recharge/recharge',
-    });
+    this.isLogin()
+      ? wx.navigateTo({
+          url: '/pages/recharge/recharge',
+        })
+      : wx.showModal({
+          title: '提示',
+          content: '请先登录',
+        });
   },
   // 积分兑换
   toIntergal: function () {
@@ -102,6 +107,18 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true,
     });
+  },
+  isLogin: function () {
+    const userId = wx.getStorageSync('userId') || '';
+    return userId !== '';
+  },
+  unLogin: function (event) {
+    !this.isLogin()
+      ? wx.showModal({
+          title: '提示',
+          content: '请先登录',
+        })
+      : wx.navigateTo({ url: event.currentTarget.dataset.url });
   },
   onLoad: function () {
     const { userInfo, intergal, paid_balance } = app.globalData;

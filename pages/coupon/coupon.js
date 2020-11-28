@@ -7,7 +7,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    couponList: [],
+    couponList: [
+      {
+        label: '新人优惠券1',
+        is_full_down: true,
+        limit_price: 300,
+        reduce_price: 20,
+        start_time: 1606571410437,
+        end_time: formatTime(new Date(1617571410437), true),
+        remarks: '',
+      },
+      {
+        label: '新人优惠券2',
+        is_full_down: false,
+        limit_price: 500,
+        reduce_price: 10,
+        start_time: 1606571410437,
+        end_time: formatTime(new Date(1617571410437), true),
+        remarks: '',
+      },
+    ],
   },
 
   getCoupon: function () {

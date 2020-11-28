@@ -6,26 +6,23 @@
       <text>{{userInfo['nickName']}}</text>
     </view>
     <view class="mine-desc {{!hasUserInfo ? 'login' : ''}}">
-      <button
-        class="to-mine-detail"
-        wx:if="{{!hasUserInfo}}"
-        open-type="getUserInfo"
-        bindgetuserinfo="toLogin"
-      >登陆</button>
+      <button class="to-mine-detail" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="toLogin">
+        登陆
+      </button>
     </view>
   </view>
   <view class="services">
     <view>常用服务</view>
     <view class="service-content">
-      <navigator class="active-page service-item" url="/pages/active/active">
+      <navigator bind:tap="unLogin" class="active-page service-item" data-url="/pages/active/active">
         <image class="service-icon" src="/assets/active64.png" style="margin-bottom: 5px;" />
         <text>活动中心</text>
       </navigator>
-      <navigator class="coupon-page service-item" url="/pages/coupon/coupon">
+      <navigator bind:tap="unLogin" class="coupon-page service-item" data-url="/pages/coupon/coupon">
         <image class="service-icon" src="/assets/coupon64.png" />
         <text>优惠券</text>
       </navigator>
-      <navigator class="vip-page service-item" url="/pages/vipcenter/vipcenter">
+      <navigator bind:tap="unLogin" class="vip-page service-item" data-url="/pages/vipcenter/vipcenter">
         <image class="service-icon" src="/assets/vip64.png" />
         <text>会员中心</text>
       </navigator>
@@ -41,7 +38,9 @@
         {{paid_balance}}
         <text class="company">元</text>
       </view>
-      <button class="money-btn" hover-class="btn-hover" plain="{{true}}" bindtap="toRecharge">立即充值</button>
+      <button class="money-btn" hover-class="btn-hover" plain="{{true}}" bindtap="toRecharge">
+        立即充值
+      </button>
     </view>
   </view>
   <view class="intergal">
@@ -54,7 +53,9 @@
         {{intergal}}
         <text class="company">分</text>
       </view>
-      <button class="money-btn" hover-class="btn-hover" plain="{{true}}" bindtap="toIntergal">积分兑换</button>
+      <button class="money-btn" hover-class="btn-hover" plain="{{true}}" bindtap="toIntergal">
+        积分兑换
+      </button>
     </view>
   </view>
   <view class="bottom-tips">

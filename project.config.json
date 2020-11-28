@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.2",
+  "libVersion": "2.14.0",
   "appid": "wx29813b3365938a41",
   "projectname": "ehotelminiapp",
   "debugOptions": {
