@@ -79,7 +79,7 @@ Component({
         newPrice,
         lastCount,
       } = this.properties;
-      wx.redirectTo({
+      wx.navigateTo({
         url: `/pages/order-details/order-details?roomId=${roomId}&inTime=${inTime}&outTime=${outTime}&diffDay=${diffDay}&title=${title}&price=${newPrice}&empty_count=${lastCount}`,
       });
     },
@@ -87,7 +87,7 @@ Component({
       if (this.properties.newPrice) {
         const { roomId } = this.properties;
         console.log(roomId);
-        wx.redirectTo({
+        wx.navigateTo({
           url: `/pages/room-detail/room-detail?roomid=${roomId}`,
         });
       } else {
